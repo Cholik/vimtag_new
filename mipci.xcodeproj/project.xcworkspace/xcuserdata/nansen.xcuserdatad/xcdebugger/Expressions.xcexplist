@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[MNLocalDeviceListViewController devs_refresh_done:]:MNLocalDeviceListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "MIPC_BuildEncryptExceptionInfo:MIPCUtils.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "[str length]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLocalDeviceListViewController refreshDeviceList:]:MNLocalDeviceListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[mipc_agent dev_passwd_set:]:mipc_agent.m">
+      </ContextState>
+      <ContextState
+         contextName = "__44-[MNLocalDeviceListViewController try_login]_block_invoke:MNLocalDeviceListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLocalDeviceListViewController collectionView:didSelectItemAtIndexPath:]:MNLocalDeviceListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLocalDeviceListViewController dev_info_get_done:]:MNLocalDeviceListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__45-[MNSettingsDeviceViewController viewDidLoad]_block_invoke:MNSettingsDeviceViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "on_recv_json_msg:MNLocalDeviceListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLoginViewController sign_in_done:]:MNLoginViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "rootTabBarController.viewControllers">
+            </PersistentString>
+            <PersistentString
+               value = "navigationController.viewControllers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MNWIFIListViewController tableView:cellForRowAtIndexPath:]:MNWIFIListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLocalDeviceListViewController try_login]:MNLocalDeviceListViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.agent.devs.counts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[mdev_devs add_dev:]:mipc_data_object.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLocalDeviceListViewController try_login_done:]:MNLocalDeviceListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[mipc_agent local_sign_in:block:]:mipc_agent.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLocalDeviceListViewController sign_in_done:]:MNLocalDeviceListViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "ret.result">
+            </PersistentString>
+            <PersistentString
+               value = "_devicePasswordTextField.text">
+            </PersistentString>
+            <PersistentString
+               value = "_currentDevicePassword">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLocalDeviceListViewController collectionView:numberOfItemsInSection:]:MNLocalDeviceListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MNAddDeviceViewController addDevice:]:MNAddDeviceViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_passwordTextField.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLoginViewController onLogin:]:MNLoginViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[MNCache mn_sharedCache]:MNCache.m">
+      </ContextState>
+      <ContextState
+         contextName = "__34-[mipc_agent local_sign_in:block:]_block_invoke:mipc_agent.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLocalDeviceListViewController saveUserInfoToLocal:]:MNLocalDeviceListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MNLocalDeviceListViewController changeDevice:]:MNLocalDeviceListViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "tempDev.sn">
+            </PersistentString>
+            <PersistentString
+               value = "dev.sn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MNModifyPasswordViewController dev_passwd_set_done:]:MNModifyPasswordViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_changedPasswordTextField.text">
+            </PersistentString>
+            <PersistentString
+               value = "strlen(pass_md5)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MNDevicePlayViewController upgrade_get_done:]:MNDevicePlayViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[ret.ver_valid isEqualToString:ret.ver_current]">
+            </PersistentString>
+            <PersistentString
+               value = "ret.hw_ext == ret.prj_ext">
+            </PersistentString>
+            <PersistentString
+               value = "[ret.hw_ext isEqualToString:ret.prj_ext]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MNAppSettingsViewController tableView:didSelectRowAtIndexPath:]:MNAppSettingsViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

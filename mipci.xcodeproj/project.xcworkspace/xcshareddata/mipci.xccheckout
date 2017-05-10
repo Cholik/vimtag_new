@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>29153F37-CB06-46B6-B9C9-AD2C629DD36D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>mipci</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4677b145-cbe9-49f2-acf6-4e0f603a8ed7++505</key>
+		<string>svn://lsvn/src/apps/trunk</string>
+		<key>a7a66ca0-8d30-4b65-a23a-da8ba9856c13++505</key>
+		<string>svn://lsvn/src/platforms/trunk</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>app/ipc/client_ios/mining_mipc_new2_agent_temp/mipci.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4677b145-cbe9-49f2-acf6-4e0f603a8ed7++505</key>
+		<string>../../../../../..</string>
+		<key>a7a66ca0-8d30-4b65-a23a-da8ba9856c13++505</key>
+		<string>../../../../../../../platforms</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>4677b145-cbe9-49f2-acf6-4e0f603a8ed7++505</key>
+		<string>svn://lsvn/src/apps</string>
+		<key>a7a66ca0-8d30-4b65-a23a-da8ba9856c13++505</key>
+		<string>svn://lsvn/src/platforms</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>svn://lsvn/src/apps/trunk/app/ipc/client_ios/mining_mipc_new2_agent_temp/mipci.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4677b145-cbe9-49f2-acf6-4e0f603a8ed7++505</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4677b145-cbe9-49f2-acf6-4e0f603a8ed7++505</string>
+			<key>IDESourceControlWCCName</key>
+			<string>apps</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
+			<string>trunk</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>a7a66ca0-8d30-4b65-a23a-da8ba9856c13++505</string>
+			<key>IDESourceControlWCCName</key>
+			<string>platforms</string>
+		</dict>
+	</array>
+</dict>
+</plist>
