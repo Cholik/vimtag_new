@@ -1,0 +1,2869 @@
+<mtimer_time_out    type="mtimer_time_out">
+    <para1          type="uint32"   info="parameter1"/>
+    <para2          type="uint32"   info="parameter2"/>
+</mtimer_time_out>
+<gw_download        type="gw_download"  info="download a file">
+    <flags          type="uint32"       info="flags"/>
+    <key            type="lenstr"       info="key, can used to save document id, to dec message exchange counts"/>
+    <url            type="lenstr"       info="url"/>
+    <reply_comp     type="uint32"       info="indicate send gw_download_ack to sender without handle"/>
+    <params         type="param_field"  counts="0-100"  info="parameters">
+        <name       type="lenstr"       info="parameter name"/>
+        <value      type="lenstr"       info="value"/>
+    </params>
+    <content        type="bytes"        info="content"/>
+</gw_download>
+
+<gw_download_ack    type="gw_download_ack"  info="file ack">
+    <result         type="int32"        info="result"/>
+    <flags          type="uint32"       info="flags"/>
+    <key            type="lenstr"       info="key, can used to save document id, to dec message exchange counts"/>
+    <url            type="lenstr"       info="url"/>
+    <rsp_status     type="uint32"       info="server response status, if local error should be 0"/>
+    <known_params   type="uint32"       counts="0-100"  info="known parameters index, if zero, means have not"/>
+    <params         type="param_field"  counts="0-100"  info="parameters">
+        <name       type="lenstr"       info="parameter name"/>
+        <value      type="lenstr"       info="value"/>
+    </params>
+    <content        type="lenstr"       info="file content"/>
+</gw_download_ack>
+
+<gw_comp_regist     type="gw_comp_regist"    info="component regist after start ok">
+    <def_xml        type="lenstr"            info="def description"/>
+</gw_comp_regist>
+
+<gw_route_add       type="gw_route_add">
+    <rflag          type="uint32"       info="&0x1:do not send ack; &0x2:retuen gw_route"/>
+    <route          type="gw_route"     counts="1-100">
+        <host       type="lenstr"       info="host"/>
+        <port       type="int32"        info="port"/>
+        <rmt_cid    type="int32"        info="remote cid"/>
+        <local_cid  type="int32"        info="local cid"/>
+        <subscribe  type="int32"        info="whether subscribe route change"/>
+    </route>
+</gw_route_add>
+
+<gw_route_add_ack   type="gw_route_add_ack">
+    <result         type="int32"/>
+    <route          type="gw_route"     counts="0-100"/>
+    <local_cid      type="int32"        counts="0-100" info="local cid"/>
+</gw_route_add_ack>
+
+<gw_route_del       type="gw_route_del">
+    <rflag          type="uint32"       info="1:do not send ack"/>
+    <local_cid      type="int32"        counts="1-100" info="local cid"/>
+</gw_route_del>
+
+<gw_route_del_ack   type="gw_route_del_ack">
+    <result         type="int32"/>
+</gw_route_del_ack>
+
+<gw_reverse_route_del   type="gw_reverse_route_del">
+    <rflag          type="uint32"       info="1:do not send ack"/>
+    <local_cid      type="int32"        counts="1-100" info="local cid"/>
+</gw_reverse_route_del>
+
+<gw_reverse_route_del_ack   type="gw_reverse_route_del_ack">
+    <result         type="int32"/>
+</gw_reverse_route_del_ack>
+
+<gw_route_subscribe type="gw_route_subscribe">
+    <rflag          type="uint32"    info="1:do not send ack"/>
+    <cids           type="int32"     counts="1-100"     info="component id"/>
+</gw_route_subscribe>
+
+<gw_route_subscribe_ack   type="gw_route_subscribe_ack">
+    <result         type="int32"    info="result"/>
+</gw_route_subscribe_ack>
+
+<gw_route_notify    type="gw_route_notify">
+    <route          type="gw_route_info">
+        <id         type="int32"     info="component id"/>
+        <reachable  type="int32"/>
+    </route>
+</gw_route_notify>
+
+<gw_trace	        type="gw_trace">
+    <trace_key      type="lenstr" info="trace key, refer to config"/>
+	<cid	        type="int32"	info="component id, if 0 ignore"/>
+	<def_name	    type="lenstr"	info="def name"/>
+	<times	        type="int32"	info="times counts"/>
+	<flag	        type="uint32"	info="trace_flag"/>
+</gw_trace>
+
+<gw_trace_ack	    type="gw_trace_ack">
+	<result	        type="int32"	info="trace result"/>
+	<times	        type="int32"	info="remained times"/>
+</gw_trace_ack>
+
+<gw_port_set        type="gw_port_set">
+    <rflag          type="uint32"   info="1:do not send ack"/>
+    <port           type="uint32"   info="local binary port"/>
+</gw_port_set>
+
+<gw_port_set_ack    type="gw_port_set_ack">
+    <result         type="int32"/>
+</gw_port_set_ack>
+
+<cgw_conf_get       type="cgw_conf_get">
+    <reserve        type="uint32"/>
+</cgw_conf_get>
+
+<cgw_conf_get_ack   type="cgw_conf_get_ack">
+    <result         type="int32"/>
+    <host                   type="lenstr"       info="external access address"/>
+    <binnnet_port           type="uint32"       info="binnet listen port"/>
+    <http_port              type="uint32"       info="http listen port"/>
+</cgw_conf_get_ack>
+
+<mmq_create         type="mmq_create">
+    <timeout        type="uint32"       info="timer len for destroy mq if no mq_pick arrive"/>
+</mmq_create>
+
+<mmq_create_ack     type="mmq_create_ack">
+    <result         type="lenstr"/>
+    <qid            type="lenstr"/>
+</mmq_create_ack>
+
+<mmq_pick           type="mmq_pick">
+    <qid            type="lenstr"/>
+    <refer          type="lenstr"               info="refer"/>
+    <timeout        type="uint32"               info="timer len for send mmq_pick_ack if no msg arrive"/>
+</mmq_pick>
+
+<mmq_pick_ack       type="mmq_pick_ack">
+    <result         type="lenstr"               info=""/>
+    <refer          type="lenstr"               info="refer in mmq_pick"/>
+</mmq_pick_ack>
+
+<mmq_destroy        type="mmq_destroy">
+    <qid            type="lenstr"/>
+</mmq_destroy>
+
+<mmq_destroy_ack    type="mmq_destroy_ack">
+    <result         type="lenstr"/>
+</mmq_destroy_ack>
+
+<cgw_debug         type="cgw_debug">
+    <password   type="lenstr"/>
+    <method     type="lenstr"/>
+    <args       type="lenstr"   counts="0-100"/>
+    <start      type="uint32"/>
+    <counts     type="uint32"/>
+    <size       type="uint32"/>
+</cgw_debug>
+
+<cgw_debug_ack type="cgw_debug_ack">
+    <iresult        type="int32"/>
+    <sresult        type="lenstr"/>
+</cgw_debug_ack>
+<!--user                                type="lenstr"                           info="user name"/-->
+<cacs_user_info                         type="cacs_user_info">
+    <pass                               type="bytes"                            info="md5(pass)"/>
+    <user_contex                        type="bytes"                            info="contex data"/>
+    <user_refer                         type="bytes"                            info="refer data"/>
+</cacs_user_info>
+
+<!--user                                type="lenstr"                           info="user name"/-->
+<cacs_user_info_ex                      type="cacs_user_info_ex">
+    <time                               type="int64"                            info="accounts create time"/>
+    <email_user                         type="int32"                            info="whether email user"/>
+    <inactive                           type="int32"                            info="whether user is inactive"/>
+    <param                              counts="0-100">
+        <name                           type="lenstr"/>
+        <value                          type="lenstr"/>
+    </param>
+</cacs_user_info_ex>
+
+<!------------------------------------------------message------------------------------------------------>
+<cacs_dh_req                            type="cacs_dh_req">
+    <bnum_prime                         type="lenstr"                           info="big prime num"/>
+    <root_num                           type="lenstr"                           info="primitive root"/>
+    <key_a2b                            type="lenstr"                           info="public key. peer a to peer b"/>
+    <tid                                type="int64"                            info="terminal id alloc by cacs. > 0"/>
+</cacs_dh_req>
+
+<cacs_dh_ack                            type="cacs_dh_ack">
+    <result                             type="lenstr"/>
+    <key_b2a                            type="lenstr"                           info="public key. peer b to peer a"/>
+    <lid                                type="int64"                            info="link_id"/>
+    <tid                                type="int64"                            info="terminal id alloc by cacs. > 0"/>
+</cacs_dh_ack>
+
+<cacs_reg_req                           type="cacs_reg_req">
+    <lid                                type="int64"                            info="link_id"/>
+    <nid                                type="lenstr"                           info="network id base lid+seq+md5(share_key+lid+seq)."/>
+    <user                               type="lenstr"                           info="user name"/>
+    <pass                               type="lenstr"                           info="des ciphertext of md5(pass) encrypt by share_key"/>
+    <lang                               type="lenstr"                           info="language"/>
+    <user_contex                        type="bytes"                            info="contex data"/>
+    <user_refer                         type="bytes"                            info="refer data"/>
+    <param                              counts="0-100">
+        <name                           type="lenstr"/>
+        <value                          type="lenstr"/>
+    </param>
+</cacs_reg_req>
+
+<cacs_reg_ack                           type="cacs_reg_ack">
+    <result                             type="lenstr"/>
+</cacs_reg_ack>
+
+<cacs_recovery_req                      type="cacs_recovery_req">
+    <nid                                type="lenstr"                           info="network id."/>
+    <user                               type="lenstr"                           info="user name"/>
+    <lang                               type="lenstr"                           info="language"/>
+    <param                              counts="0-100">
+        <name                           type="lenstr"/>
+        <value                          type="lenstr"/>
+    </param>
+</cacs_recovery_req>
+
+<cacs_recovery_ack                      type="cacs_recovery_ack">
+    <result                             type="lenstr"/>
+</cacs_recovery_ack>
+
+<cacs_passwd_req                        type="cacs_passwd_req">
+    <nid                                type="lenstr"                           info="network id."/>
+    <user                               type="lenstr"                           info="user name"/>
+    <old_pass                           type="lenstr"                           info="des ciphertext of md5(old_pass) encrypt by share_key"/>
+    <new_pass                           type="lenstr"                           info="des ciphertext of md5(new_pass) encrypt by share_key"/>
+    <guest                              type="int32"                            info="change guest password"/>
+</cacs_passwd_req>
+
+<cacs_passwd_ack                        type="cacs_passwd_ack">
+    <result                             type="lenstr"/>
+</cacs_passwd_ack>
+
+<cacs_su_passwd_req                     type="cacs_su_passwd_req">
+    <nid                                type="lenstr"                           info="network id."/>
+    <user                               type="lenstr"                           info="user name"/>
+    <su_pass                            type="lenstr"                           info="des ciphertext of md5(su_pass) encrypt by share_key"/>
+    <new_pass                           type="lenstr"                           info="des ciphertext of md5(new_pass) encrypt by share_key"/>
+    <guest                              type="int32"                            info="change guest password"/>
+</cacs_su_passwd_req>
+
+<cacs_su_passwd_ack                     type="cacs_su_passwd_ack">
+    <result                             type="lenstr"/>
+</cacs_su_passwd_ack>
+
+<cacs_login_req                         type="cacs_login_req">
+    <_msysenv>
+        <remote_ip                      type="ip"/>
+        <remote_port                    type="int32"/>
+    </_msysenv>
+    <lid                                type="int64"                            info="link_id"/>
+    <nid                                type="lenstr"                           info="network id base lid+seq+md5(share_key+lid+seq)."/>
+    <user                               type="lenstr"                           info="user name"/>
+    <pass                               type="lenstr"                           info="des ciphertext of md5(pass) encrypt by share_key"/>
+    <session_req                        type="int32"                            info="indicate whether return a session in cacs_login_ack"/>
+    <session_contex                     type="bytes"                            info="contex data"/>
+    <session_refer                      type="bytes"                            info="refer data"/>
+    <login_contex                       type="bytes"                            info="contex data"/>
+    <login_refer                        type="bytes"                            info="refer data"/>
+    <param                              counts="0-100">
+        <name                           type="lenstr"/>
+        <value                          type="lenstr"/>
+    </param>
+</cacs_login_req>
+
+<cacs_login_ack                         type="cacs_login_ack">
+    <result                             type="lenstr"/>
+    <sid                                type="int64"                            info="session id"/>
+    <seq                                type="int32"                            info="next seq should be used for dh nid"/>
+    <addr                               type="lenstr"                           info="requester ip addr"/>
+    <guest                              type="int32"                            info="guest"/>
+</cacs_login_ack>
+
+<cacs_logout_req                        type="cacs_logout_req">
+    <nid                                type="lenstr"/>
+</cacs_logout_req>
+
+<cacs_logout_ack                        type="cacs_logout_ack">
+    <result                             type="lenstr"/>
+</cacs_logout_ack>
+
+<cacs_decrypt_req                       type="cacs_decrypt_req">
+    <lid                                type="int64"                            info="link_id"/>
+    <ciphertext                         type="lenstr"                           counts="1-10" info="ciphertext encrypt by share_key use des"/>
+</cacs_decrypt_req>
+
+<cacs_decrypt_ack                       type="cacs_decrypt_ack">
+    <result                             type="lenstr"/>
+    <plaintext                          type="lenstr"                           counts="1-10" info="decrypt result"/>
+</cacs_decrypt_ack>
+
+<cacs_session_req                       type="cacs_session_req">
+    <_msysenv>
+        <remote_ip                      type="ip"/>
+    </_msysenv>
+    <lid                                type="int64"                            info="link_id"/>
+    <nid                                type="lenstr"                           info="network id base lid+seq+md5(share_key+lid+seq)."/>
+    <session_contex                     type="bytes"                            info="contex data"/>
+    <session_refer                      type="bytes"                            info="refer data"/>
+</cacs_session_req>
+
+<cacs_session_ack                       type="cacs_session_ack">
+    <result                             type="lenstr"/>
+    <sid                                type="int64"                            info="session id"/>
+    <seq                                type="int32"                            info="next seq should be used for build dh nid"/>
+    <addr                               type="lenstr"                           info="requester ip addr"/>
+</cacs_session_ack>
+
+<cacs_check_nid_req                     type="cacs_check_nid_req">
+    <nid                                type="lenstr"                           info="mining64_code for tlv set. ( md5(seq+lid+sharekey) + lid+seq )/( md5(seq+tid+user+md5(pass))+seq+tid+user )."/>
+    <flag                               type="int32"                            info="bit0:1 indicate no need increace seq after check"/>
+</cacs_check_nid_req>
+
+<cacs_check_nid_ack                     type="cacs_check_nid_ack">
+    <result                             type="lenstr"/>
+    <user                               type="lenstr"                           info="user name"/>
+    <sid                                type="int64"                            info="session id"/>
+    <seq                                type="int32"                            info="session seq"/>
+    <lid                                type="int64"                            info="link_id"/>
+    <user_contex                        type="bytes"                            info="contex data"/>
+    <user_refer                         type="bytes"                            info="refer data"/>
+    <login_contex                       type="bytes"                            info="contex data"/>
+    <login_refer                        type="bytes"                            info="refer data"/>
+    <session_contex                     type="bytes"                            info="contex data"/>
+    <session_refer                      type="bytes"                            info="refer data"/>
+    <guest                              type="int32"                            info="guest login"/>
+</cacs_check_nid_ack>
+
+<cacs_check_pass_req                    type="cacs_check_pass_req">
+    <nid                                type="lenstr"                           info="mining64_code for tlv set. ( md5(seq+lid+sharekey) + lid+seq )/( md5(seq+tid+user+md5(pass))+seq+tid+user )."/>
+    <user                               type="lenstr"                           info="user name"/>
+    <pass                               type="lenstr"                           info="pass"/>
+</cacs_check_pass_req>
+
+<cacs_check_pass_ack                    type="cacs_check_pass_ack">
+    <result                             type="lenstr"/>
+</cacs_check_pass_ack>
+<file             type="file">
+    <expire       type="uint32" info="expire time, from 2000-01-01 00:00:00 seconds."/>
+    <last_modify  type="uint32" info="last modify time, from 2000-01-01 00:00:00 seconds."/>
+    <etag         type="lenstr" info="etag"/>
+    <mime         type="lenstr" info="mime"/>
+    <encoding     type="lenstr" info="encoding type, gzip.."/>
+    <content      type="bytes"  info="content"/>
+</file>
+<!--devid                   type="lenstr"                            info="devid"/-->
+<clicm_dev_info             type="clicm_dev_info">
+    <devid                  type="lenstr"               info="device id"/>
+    <user                   type="lenstr"               info="user"/>
+    <active_pwd             type="lenstr"               info="active password"/>
+    <device_pwd             type="lenstr"               info="device password"/>
+    <server_pwd             type="lenstr"               info="server password"/>
+    <status                 type="lenstr"               info="inactive; active"/>
+    <active_date            type="int64"                info="date"/>
+</clicm_dev_info>
+
+<!--logid                   type="int64"                info="log id"/-->
+<clicm_log                  type="clicm_log">
+    <log_id                 type="int64"                info="log id"/>
+    <user                   type="lenstr"               info="user"/>
+    <devid                  type="lenstr"               info="device id"/>
+    <addr                   type="lenstr"               info="ip addr"/>
+    <date                   type="int64"                info="date"/>
+    <action                 type="lenstr"               info="action"/>
+    <result                 type="lenstr"               info="result"/>
+    <context                type="lenstr"               info="contex"/>
+    <refer                  type="lenstr"               info="refer"/>
+</clicm_log>
+
+<!--logid                   type="int64"                info="log id"/-->
+<clicm_granted_log          type="clicm_granted_log">
+    <log_id                 type="int64"                info="log id"/>
+    <operator1              type="lenstr"               info="operator user"/>
+    <user                   type="lenstr"               info="user"/>
+    <date                   type="uint64"               info="grant date"/>
+    <num                    type="int32"                info="grant num"/>
+</clicm_granted_log>
+
+<clicm_granted_log1         type="clicm_granted_log1">
+    <code_type              type="int32"                />
+    <active_num             type="int32"                />
+</clicm_granted_log1>
+
+<clicm_active               type="clicm_active">
+    <_msysenv>
+        <remote_ip          type="ip"/>
+    </_msysenv>
+    <code                   type="lenstr"   />
+    <req_code               type="lenstr"   info="cli:mlic_req_code_encode()"/>
+    <code_type              type="int32"    info="0:test, 1:normal"/>
+</clicm_active>
+
+<clicm_active_ack           type="clicm_active_ack">
+    <result                 type="lenstr"    />
+    <cert                   type="lenstr"   info="srv:mlic_cert_encode({fbc:2byte,mfc:4byte,id:7byte})  cli:mlic_cert_decode(),dev_id_save()"/>
+    <ack_code               type="lenstr"   info="srv:mlic_req_code_decode(),mlic_cert_encode()  cli:mlic_cert_decode(), check-with-req-code-content"/>
+</clicm_active_ack>
+
+<clicm_get_active_code      type="clicm_get_active_code">
+    <_msysenv>
+        <remote_ip          type="ip"/>
+    </_msysenv>
+    <nid                    type="lenstr"   />
+    <num                    type="int32"    />
+    <code_type              type="int32"    info="0:test, 1:normal"/>
+    <mfc                    type="lenstr"   />
+</clicm_get_active_code>
+
+<clicm_get_active_code_ack  type="clicm_get_active_code_ack">
+    <result                 type="int32"        />
+    <err_text               type="int32"        />
+    <acode_list             type="clicm_acode2" counts="0-100">
+        <active_code        type="lenstr"   />
+        <ipc_pwd            type="lenstr"   />
+    </acode_list>
+</clicm_get_active_code_ack>
+
+<clicm_granted_active_code      type="clicm_granted_active_code">
+    <_msysenv>
+        <remote_ip              type="ip"/>
+    </_msysenv>
+    <nid                        type="lenstr"       />
+    <user                       type="lenstr"       />
+    <num                        type="int32"        />
+    <active_num                 type="int32"        />
+    <code_type                  type="int32"        info="0:test, 1:normal"/>
+</clicm_granted_active_code>
+
+<clicm_granted_active_code_ack  type="clicm_granted_active_code_ack">
+    <result                     type="int32"        />
+    <err_text                   type="lenstr"       />
+</clicm_granted_active_code_ack>
+
+<clicm_query                    type="clicm_query">
+    <_msysenv>
+        <remote_ip              type="ip"/>
+    </_msysenv>
+    <nid                        type="lenstr"   />
+    <user                       type="lenstr"   />
+    <!-- 1: user grantd log -->
+    <!-- 2: user latest summary (force refresh) -->
+
+    <!-- 10: user test acode  -->
+    <!-- 11: user acode  -->
+    <!-- 12: user active test acode  -->
+    <!-- 13: user active acode  -->
+    <!-- 14: user un-active test acode -->
+    <!-- 15: user un-active acode -->
+
+    <!-- 20: query active code info -->
+
+    <!-- 100: log -->
+    <flag                       type="int32"    />
+    <start                      type="int32"    />
+    <counts                     type="uint32"   />
+    <save_file                  type="int32"    />
+    <acodes                     type="lenstr"   counts="0-100"  /> 
+</clicm_query>
+
+<clicm_query_ack                type="clicm_query_ack">
+    <result                     type="int32"    />
+    <err_text                   type="lenstr"   />
+
+    <summary counts="2">
+        <code_type          type="int32"    />
+        <num                type="int32"    />
+        <left_num           type="int32"    />
+        <active_num         type="int32"    />
+        <active_left_num    type="int32"    />
+    </summary>
+
+    <granted>
+        <logs                   type="clicm_granted_log_ex"     counts="0-100">
+            <log_id             type="int64"                    info="log id"/>
+            <operator1          type="lenstr"                   info="operator user"/>
+            <user               type="lenstr"                   info="user"/>
+            <date               type="uint64"                   info="grant date"/>
+            <num                type="int32"                    info="grant num"/>
+            <active_num         type="int32"                    info="grant active num"/>
+            <code_type          type="int32"                    />
+        </logs>
+    </granted>
+    <acode>
+        <logs                   type="clicm_acode1"         counts="0-100">
+            <index              type="int32"    />
+            <code               type="lenstr"   />
+            <status             type="lenstr"   />
+            <date               type="int64"    />
+            <ipc_pwd            type="lenstr"   />
+            <mfc                type="lenstr"   />
+            <seq                type="int32"    />
+        </logs>
+    </acode>
+    <logs                       type="clicm_log"    counts="0-100"  />
+</clicm_query_ack>
+
+<clicm_connect_cdmq_req                 type="clicm_connect_cdmq_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</clicm_connect_cdmq_req>
+
+<clicm_connect_cdmq_ack                 type="clicm_connect_cdmq_ack">
+    <result                             type="lenstr"/>
+</clicm_connect_cdmq_ack>
+
+<clicm_regist_cdmq_req                  type="clicm_regist_cdmq_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</clicm_regist_cdmq_req>
+
+<clicm_regist_cdmq_ack                  type="clicm_regist_cdmq_ack">
+    <result                             type="lenstr"/>
+</clicm_regist_cdmq_ack>
+<CcmSession                             type="CcmSession">
+    <Nid                                type="lenstr"                           info="user net session id"/>
+    <SerialNumber                       type="lenstr"                           info="The serial number of the device"/>
+</CcmSession>
+<CcmResult                              type="CcmResult">
+    <Code                               type="lenstr"/>
+    <SubCode                            type="lenstr"/>
+    <Reason                             type="lenstr"/>
+    <Desc                               type="lenstr"/>
+</CcmResult>
+
+<mipc_server                            type="mipc_server">
+    <signal                             type="lenstr"                           counts="0-10"                           info="singal proxy server url"/>
+    <debug                              type="lenstr"                           info="debug server url"/>
+    <license                            type="lenstr"                           info="license server url"/>
+    <ping                               type="lenstr"                           info="ping server url"/>
+    <ntp                                type="lenstr"                           counts="0-10"                           info="ntp server list"/>
+    <param                              counts="0-100">
+        <name                           type="lenstr"/>
+        <value                          type="lenstr"/>
+    </param>
+</mipc_server>
+<cmipcgw_get_req                        type="cmipcgw_get_req">
+    <_msysenv>
+        <req_protocol                   type="lenstr"/>
+        <local_ip                       type="ip"/>
+        <local_port                     type="int32"/>
+        <remote_ip                      type="ip"/>
+        <remote_port                    type="int32"/>
+        <host                           type="lenstr"/>
+        <url                            type="lenstr"/>
+        <user_agent                     type="lenstr"/>
+    </_msysenv>
+    <client>
+        <mode                           type="lenstr"                           info="device, user"/>
+        <id                             type="lenstr"                           info="device SerialNumber or user name"/>
+        <param                          counts="0-100">
+            <name                       type="lenstr"/>
+            <value                      type="lenstr"/>
+        </param>
+    </client>
+</cmipcgw_get_req>
+
+<cmipcgw_get_ack                        type="cmipcgw_get_ack">
+    <result                             type="lenstr"/>
+    <server                             type="mipc_server"/>
+    <myaddr                             type="ip"                               info="reqeuster ip addr"/>
+    <param                              counts="0-100">
+        <name                           type="lenstr"/>
+        <value                          type="lenstr"/>
+    </param>
+    <ex                                 type="lenstr"                           info="extend info"/>
+</cmipcgw_get_ack>
+
+<cmipcgw_set_req                        type="cmipcgw_set_req">
+    <password                           type="lenstr"/>
+    <mode                               type="lenstr"                           info="device, user"/>
+    <id                                 type="lenstr"                           info="device SerialNumber or user name"/>
+    <server                             type="mipc_server"                      counts="0-1"/>
+</cmipcgw_set_req>
+
+<cmipcgw_set_ack                        type="cmipcgw_set_ack">
+    <result                             type="lenstr"/>
+</cmipcgw_set_ack>
+
+<cmipcgw_connect_cdmq_req               type="cmipcgw_connect_cdmq_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</cmipcgw_connect_cdmq_req>
+
+<cmipcgw_connect_cdmq_ack               type="cmipcgw_connect_cdmq_ack">
+    <result                             type="lenstr"/>
+</cmipcgw_connect_cdmq_ack>
+
+<cmipcgw_regist_cdmq_req                type="cmipcgw_regist_cdmq_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</cmipcgw_regist_cdmq_req>
+
+<cmipcgw_regist_cdmq_ack                type="cmipcgw_regist_cdmq_ack">
+    <result                             type="lenstr"/>
+</cmipcgw_regist_cdmq_ack>
+<ccm_conf                               type="ccm_conf" info="config data">
+    <data_dir                           type="lenstr"/>
+    <sd_dir                             type="lenstr"/>
+    <event_max                          type="int32"                            info="max event counts"/>
+    <watchdog                           type="int32"                            info="whether enable watchdog"/>
+    <reactive                           type="int32"                            info="whether enable repeat active device"/>
+    <max_link_counts                    type="uint64"                           info="max link counts"/>
+    <max_session_counts                 type="uint64"                           info="max session counts"/>
+    <md_blocks                          type="uint32"                           info="max md blocks"/>
+    <debug_password                     type="lenstr"/>
+    <audw                               type="int32"/>
+    <aec_on                             type="int32"/>
+    <thread_close>
+        <watchdog                       type="int32"    />
+        <md                             type="int32" info="motion detection"/>
+        <video                          type="int32"    />
+        <audio                          type="int32"    />
+        <osd                            type="int32"    />
+
+        <!--
+        <pub                            type="int32"    />
+        <write                          type="int32"    />
+        -->
+    </thread_close>
+</ccm_conf>
+
+<!-- media.statistics -->
+<ccm_sd_conf                            type="ccm_sd_conf">
+    <enable                             type="int32"        />
+    <low_space                          type="int32"        info="low space warn line"/>
+    <msg_queue_length                   type="int32"        />
+
+    <low_space_ratio                    type="float32"      info="low space ratio"  />
+    <middle_space_ratio                 type="float32"      info="middle space ratio" />
+
+    <clear_space                        type="int32"        />
+</ccm_sd_conf>
+
+<ccm_nick_conf                          type="ccm_nick_conf">
+    <nickname                           type="lenstr"       />
+</ccm_nick_conf>
+
+<CcmCommResponse                        type="CcmCommResponse">
+    <Result                             type="CcmResult"/>
+</CcmCommResponse>
+
+<CcmAuthRequest                         type="CcmAuthRequest">
+    <Session                            type="CcmSession"/>
+    <Action                             type="lenstr"                           info="Action type, such as GetDevices, GetSnapshotUri etc.d"/>
+</CcmAuthRequest>
+
+<CcmAuthResponse                        type="CcmAuthResponse">
+    <Result                             type="CcmResult"/>
+    <check_nid_ack                      type="cacs_check_nid_ack"/>
+</CcmAuthResponse>
+
+<!---------------------------------------------devicemgmt begin-------------------------------------------------------->
+<CcmGetDeviceRequest                    type="CcmGetDeviceRequest">
+    <Session                            type="CcmSession"   />
+</CcmGetDeviceRequest>
+
+<CcmGetDeviceResponse                   type="CcmGetDeviceResponse">
+    <Result                             type="CcmResult"/>
+    <Type                               type="lenstr"                           info="IPC, MS"/>
+    <SerialNumber                       type="lenstr"                           info="The serial number of the device"/>
+    <Nick                               type="lenstr"                           info="Device nick"/>
+    <Version                            type="lenstr"                           info="Device version"/>
+    <spv                                type="lenstr"                           info="signal proto version. v0; v1"/>
+</CcmGetDeviceResponse>
+
+<CcmGetSubDevicesRequest                type="CcmGetSubDevicesRequest">
+    <Session                            type="CcmSession"   />
+    <Start                              type="uint32"                           info="start position"/>
+    <Counts                             type="uint32"                           info="max dev counts"/>
+    <Params                             type="lenstr"                           info="all or param filter"/>
+</CcmGetSubDevicesRequest>
+
+<CcmGetSubDevicesResponse               type="CcmGetSubDevicesResponse">
+    <Result                             type="CcmResult"/>
+    <Start                              type="uint32"                           info="start dev index that returned"/>
+    <Total                              type="uint32"                           info="total dev number"/>
+    <Devices                            type="CcmDeviceInfo"                    counts="0-100">
+        <Type                           type="lenstr"                           info="IPC, MS"/>
+        <Status                         type="lenstr"                           info="InvalidAuth, Offline, Online"/>
+        <Addr                           type="lenstr"                           info="Device addr"/>
+        <authority                      type="lenstr"                           info="root,guest"/>
+
+        <Manufacturer                   type="lenstr"                           info="The manufactor of the device"/>
+        <Model                          type="lenstr"                           info="The device model"/>
+        <BaseFirmwareVersion            type="lenstr"                           info="The base firmware version in the device"/>
+        <FirmwareVersion                type="lenstr"                           info="The firmware version in the device"/>
+        <SerialNumber                   type="lenstr"                           info="The serial number of the device"/>
+        <HardwareId                     type="lenstr"                           info="The hardware ID of the device"/>
+        <Nick                           type="lenstr"                           info="Device nick"/>
+        <Param                          counts="0-100">
+            <name                       type="lenstr"/>
+            <value                      type="lenstr"/>
+        </Param>
+    </Devices>
+</CcmGetSubDevicesResponse>
+
+<CcmAddSubDeviceRequest                 type="CcmAddSubDeviceRequest">
+    <Session                            type="CcmSession"   />
+    <SerialNumber                       type="lenstr"                           info="The serial number of the device"/>
+    <pass                               type="lenstr"                           info="des ciphertext of md5(pass) encrypt by share_key"/>
+</CcmAddSubDeviceRequest>
+
+<CcmAddSubDeviceResponse                type="CcmAddSubDeviceResponse">
+    <Result                             type="CcmResult"/>
+    <Info                               type="CcmDeviceInfo"/>
+</CcmAddSubDeviceResponse>
+
+<CcmDelSubDeviceRequest                 type="CcmDelSubDeviceRequest">
+    <Session                            type="CcmSession"   />
+    <SerialNumber                       type="lenstr"                           info="The serial number of the device"/>
+</CcmDelSubDeviceRequest>
+
+<CcmDelSubDeviceResponse               type="CcmDelSubDeviceResponse">
+    <Result                             type="CcmResult"/>
+</CcmDelSubDeviceResponse>
+
+<CcmSetDeviceNickRequest                type="CcmSetDeviceNickRequest">
+    <Session                            type="CcmSession"   />
+    <Nick                               type="lenstr"       />
+</CcmSetDeviceNickRequest>
+
+<CcmSetDeviceNickResponse               type="CcmSetDeviceNickResponse">
+    <Result                             type="CcmResult"    />
+</CcmSetDeviceNickResponse>
+
+<GetDeviceInformationRequest            type="GetDeviceInformationRequest">
+    <Session                            type="CcmSession"/>
+    <Params                             type="lenstr"                           info="all or param filter"/>
+</GetDeviceInformationRequest>
+
+<GetDeviceInformationResponse           type="GetDeviceInformationResponse">
+    <Result                             type="CcmResult"/>
+    <Manufacturer                       type="lenstr"                           info="The manufactor of the device"/>
+    <Model                              type="lenstr"                           info="The device model"/>
+    <BaseFirmwareVersion                type="lenstr"                           info="The base firmware version in the device"/>
+    <FirmwareVersion                    type="lenstr"                           info="The firmware version in the device"/>
+    <SerialNumber                       type="lenstr"                           info="The serial number of the device"/>
+    <HardwareId                         type="lenstr"                           info="The hardware ID of the device"/>
+    <Nick                               type="lenstr"                           info="Device nick"/>
+    <Type                               type="lenstr"                           info="IPC,MS,BOX" />
+    <Param                              counts="0-100">
+        <name                           type="lenstr"/>
+        <value                          type="lenstr"/>
+    </Param>
+</GetDeviceInformationResponse>
+
+<SetUserRequest                         type="SetUserRequest">
+    <Session                            type="CcmSession"/>
+    <User                               type="User"                             counts="1-100">
+        <Username                       type="lenstr"/>
+        <OldPassword                    type="lenstr"/>
+        <Password                       type="lenstr"/>
+        <UserLevel                      type="lenstr"                           info="Administrator; Operator; User; Anonymous"/>
+        <guest                          type="int32"                            info="guest"/>
+    </User>
+</SetUserRequest>
+
+<SetUserResponse                        type="SetUserResponse">
+    <Result                             type="CcmResult"/>
+</SetUserResponse>
+
+<GetNetworkInterfacesRequest            type="GetNetworkInterfacesRequest">
+    <Session                            type="CcmSession"/>
+</GetNetworkInterfacesRequest>
+
+<GetNetworkInterfacesResponse           type="GetNetworkInterfacesResponse">
+    <Result                             type="CcmResult"/>
+    <NetworkInterfaces                  type="NetworkInterface"                 counts="1-100"                          info="List of network interfaces">
+        <token                          type="lenstr"                           info="Unique identifier referencing the physical entity"/>
+        <Enabled                        type="uint32"                           info="Indicates whether or not an interface is enabled"/>
+        <Info                           type="NetworkInterfaceInfo"             counts="0-1"                            info="Network interface information">
+            <Name                       type="lenstr"                           info="Network interface name, for example eth0"/>
+            <HwAddress                  type="lenstr"                           info="Network interface MAC address"/>
+            <MTU                        type="uint32"                           info="Maximum transmission unit"/>
+        </Info>
+        <IPv4                           type="IPv4NetworkInterface"             counts="0-1"                            info="IPv4 network interface configuration">
+            <Enabled                    type="uint32"                           info="Indicates whether or not IPv4 is enabled"/>
+            <ConnStatus                 type="uint32"                           info="0:un-connect, 1:connected, 2:conning"    />
+            <Config                     type="IPv4Configuration">
+                <Manual                 type="PrefixedIPv4Address"              counts="0-100">
+                    <Address            type="ip"                               info="IPv4 address"/>
+                    <PrefixedIPv4Address    type="uint32"                       info="Prefixsubmask length"/>
+                </Manual>
+                <LinkLocal              type="PrefixedIPv4Address"              counts="0-1"                            info="Link local address"/>
+                <FromDHCP               type="PrefixedIPv4Address"              counts="0-1"                            info="IPv4 address configured by using DHCP"/>
+                <DHCP                   type="int32"                            info="Indicates whether or not DHCP is used"/>
+            </Config>
+        </IPv4>
+    </NetworkInterfaces>
+</GetNetworkInterfacesResponse>
+
+<SetNetworkInterfacesRequest            type="SetNetworkInterfacesRequest">
+    <Session                            type="CcmSession"/>
+    <InterfaceToken                     type="lenstr"                           info="Symbolic network interface name"/>
+    <NetworkInterface                   type="NetworkInterfaceSetConfiguration">
+        <Enabled                        type="uint32"                           info="Indicates whether or not an interface is enabled"/>
+        <MTU                            type="uint32"                           info="Maximum transmission unit"/>
+        <IPv4                           type="IPv4NetworkInterfaceSetConfiguration" counts="0-1"                        info="IPv4 network interface configuration">
+            <Enabled                    type="uint32"                           info="Indicates whether or not IPv4 is enabled"/>
+            <Manual                     type="PrefixedIPv4Address"              counts="0-100"/>
+            <DHCP                       type="uint32"                           info="Indicates whether or not DHCP is used"/>
+        </IPv4>
+    </NetworkInterface>
+</SetNetworkInterfacesRequest>
+
+<SetNetworkInterfacesResponse           type="SetNetworkInterfacesResponse">
+    <Result                             type="CcmResult"/>
+    <RebootNeeded                       type="uint32"                           info="Indicates whether or not a reboot is required after configuration updates"/>
+</SetNetworkInterfacesResponse>
+
+<GetNetworkDefaultGatewayRequest        type="GetNetworkDefaultGatewayRequest">
+    <Session                            type="CcmSession"/>
+    <token                              type="lenstr"   />
+</GetNetworkDefaultGatewayRequest>
+
+<GetNetworkDefaultGatewayResponse       type="GetNetworkDefaultGatewayResponse">
+    <Result                             type="CcmResult"/>
+    <NetworkGateway                     type="NetworkGateway">
+        <IPv4Address                    type="ip"                   counts="0-100" info="IPv4 address"/>
+    </NetworkGateway>
+</GetNetworkDefaultGatewayResponse>
+
+<SetNetworkDefaultGatewayRequest        type="SetNetworkDefaultGatewayRequest">
+    <Session                            type="CcmSession"/>
+    <token                              type="lenstr"   />
+    <NetworkGateway                     type="NetworkGateway">
+        <IPv4Address                    type="ip"                   counts="0-100"  info="IPv4 address"/>
+    </NetworkGateway>
+</SetNetworkDefaultGatewayRequest>
+
+<SetNetworkDefaultGatewayResponse       type="SetNetworkDefaultGatewayResponse">
+    <Result                             type="CcmResult"/>
+</SetNetworkDefaultGatewayResponse>
+
+<GetDNSRequest                          type="GetDNSRequest">
+    <Session                            type="CcmSession"/>
+</GetDNSRequest>
+
+<GetDNSResponse                         type="GetDNSResponse">
+    <Result                             type="CcmResult"/>
+    <DNSInformation                     type="DNSInformation">
+        <FromDHCP                       type="int32"                            info="Indicates whether or not DNS information is retrieved from DHCP"/>
+        <DNSFromDHCP                    type="ip"                               counts="0-100"                          info="List of DNS addresses received from DHCP"/>
+        <DNSManual                      type="ip"                               counts="0-100"                          info="List of manually entered DNS addresses"/>
+    </DNSInformation>
+</GetDNSResponse>
+
+<SetDNSRequest                          type="SetDNSRequest">
+    <Session                            type="CcmSession"/>
+    <FromDHCP                           type="uint32"                           info="Indicate if the DNS address is to be retrieved using DHCP"/>
+    <DNSManual                          type="ip"                               counts="0-100"                          info="DNS address(es) set manually"/>
+</SetDNSRequest>
+
+<SetDNSResponse                         type="SetDNSResponse">
+    <Result                             type="CcmResult"/>
+</SetDNSResponse>
+
+<SetSystemDateAndTimeRequest            type="SetSystemDateAndTimeRequest">
+    <Session                            type="CcmSession"/>
+    <DateTimeType                       type="lenstr"                           info="Defines if the date and time is set via NTP or manually. Manual; NTP"/>
+    <DaylightSavings                    type="uint32"                           info="Automatically adjust Daylight savings if defined in TimeZone"/>
+    <TimeZone                           type="lenstr"                           counts="0-1"                            info="The time zone in POSIX 1003.1 format"/>
+    <UTCDateTime                        type="DateTime"                         counts="0-1">
+        <Time                           type="Time">
+            <Hour                       type="uint32"                           info="Range is 0 to 23"/>
+            <Minute                     type="uint32"                           info="Range is 0 to 59"/>
+            <Second                     type="uint32"                           info="Range is 0 to 59"/>
+        </Time>
+        <Date                           type="Date">
+            <Year                       type="uint32"/>
+            <Month                      type="uint32"                           info="Range is 1 to 12"/>
+            <Day                        type="uint32"                           info="Range is 1 to 31"/>
+        </Date>
+    </UTCDateTime>
+</SetSystemDateAndTimeRequest>
+
+<SetSystemDateAndTimeResponse           type="SetSystemDateAndTimeResponse">
+    <Result                             type="CcmResult"/>
+</SetSystemDateAndTimeResponse>
+
+<GetSystemDateAndTimeRequest            type="GetSystemDateAndTimeRequest">
+    <Session                            type="CcmSession"/>
+</GetSystemDateAndTimeRequest>
+
+<GetSystemDateAndTimeResponse           type="GetSystemDateAndTimeResponse">
+    <Result                             type="CcmResult"/>
+    <UTCDateTime                        type="DateTime"/>
+</GetSystemDateAndTimeResponse>
+
+<GetNTPRequest                          type="GetNTPRequest">
+    <Session                            type="CcmSession"/>
+</GetNTPRequest>
+
+<GetNTPResponse                         type="GetNTPResponse">
+    <Result                             type="CcmResult"/>
+    <NTPInformation                     type="NTPInformation">
+        <AutoSync                       type="int32"                            />
+        <AutoSyncInterval               type="int32"                            />
+        <FromDHCP                       type="int32"                            info="Indicates whether or not NTP information is retrieved from DHCP"/>
+        <NTPFromDHCP                    type="NetworkHost"                      counts="0-100"                          info="List of NTP addresses received from DHCP">
+            <DNSname                    type="lenstr"/>
+            <IPv4Address                type="ip"/>
+        </NTPFromDHCP>
+        <NTPManual                      type="NetworkHost"                      counts="0-100"                          info="List of manually entered NTP addresses"/>
+        <NTPSystem                      type="lenstr"                           counts="0-100"  />
+        <TimeZone                       type="lenstr"                           />
+    </NTPInformation>
+</GetNTPResponse>
+
+<SetNTPRequest                          type="SetNTPRequest">
+    <Session                            type="CcmSession"/>
+    <AutoSync                           type="int32"       />
+    <FromDHCP                           type="uint32"                           info="Indicate if the NTP address is to be retrieved using DHCP"/>
+    <NTPManual                          type="NetworkHost"                      counts="0-100"                          info="Manual NTP settings"/>
+</SetNTPRequest>
+
+<SetNTPResponse                         type="SetNTPResponse">
+    <Result                             type="CcmResult"/>
+</SetNTPResponse>
+
+<CcmUpgradeRequest                      type="CcmUpgradeRequest">
+    <Session                            type="CcmSession"/>
+    <_msysenv>
+        <file_exchange	                type="lenstr"                           counts="0-100"/>
+    </_msysenv>
+    <FirmwareSrc                        type="lenstr"                           info="upload, download, static"/>
+    <FirmwareContent                    type="bytes"                            info="firmware content. valid when upload"/>
+    <FirmwarePath                       type="lenstr"                           info="firmware file path. valid when static"/>
+    <file_type                          type="lenstr"                           info="img, patch. valid when download"/>
+    <file_version                       type="lenstr"                           info="img version or patch version. valid when download"/>
+</CcmUpgradeRequest>
+
+<CcmUpgradeResponse                     type="CcmUpgradeResponse">
+    <Result                             type="CcmResult"/>
+</CcmUpgradeResponse>
+
+<CcmGetUpgradeStatusRequest             type="CcmGetUpgradeStatusRequest">
+    <Session                            type="CcmSession"/>
+    <CheckVersion                       type="uint32"                           info="Indicate check valid firmware version from server"/>
+    <lang                               type="lenstr"                           info="Client language"/>
+</CcmGetUpgradeStatusRequest>
+
+<CcmGetUpgradeStatusResponse            type="CcmGetUpgradeStatusResponse">
+    <Result                             type="CcmResult"/>
+    <Status                             type="lenstr"                           info="free, download, erase, write"/>
+    <Progress                           type="uint32"                           info="percentage"/>
+    <CurrentVersion                     type="lenstr"                           info="current version of device"/>
+    <ValidVersion                       type="lenstr"                           info="valid version for download"/>
+    <Remark                             type="lenstr"                           info="extend info"/>
+    <img_version                        type="lenstr"                           info="img version"/>
+    <project_version                    type="lenstr"                           info="project version"/>
+    <valid_version                      type="lenstr"                           counts="0-10"       info="all valid version"/>
+    <changes                            type="lenstr"                           info="change history"/>
+    <task                               type="ccm_upgrade_task"                 counts="0-1">
+        <file_src                       type="lenstr"                           info="upload, download, static"/>
+        <file_type                      type="lenstr"                           info="img, patch"/>
+        <file_version                   type="lenstr"                           info="upgrade target version"/>
+        <status                         type="lenstr"                           info="free, download, erase, write, finish, fail"/>
+        <progress                       type="uint32"                           info="percentage"/>
+        <start_tick                     type="uint32"                           info="start tick"/>
+        <end_tick                       type="uint32"                           info="end tick"/>
+        <remark                         type="lenstr"                           info="extend info"/>
+    </task>
+</CcmGetUpgradeStatusResponse>
+
+<SystemRebootRequest                    type="SystemRebootRequest">
+    <Session                            type="CcmSession"/>
+</SystemRebootRequest>
+
+<SystemRebootResponse                   type="SystemRebootResponse">
+    <Result                             type="CcmResult"/>
+    <Message                            type="lenstr"                           info="Contains the reboot message sent by the device"/>
+</SystemRebootResponse>
+
+<RestoreSystemRequest                   type="RestoreSystemRequest">
+    <Session                            type="CcmSession"/>
+    <Backup                             type="int32"                            info="0: no backup; 1: backup net/pass/nick etc."/>
+</RestoreSystemRequest>
+
+<RestoreSystemResponse                  type="RestoreSystemResponse">
+    <Result                             type="CcmResult"        />
+</RestoreSystemResponse>
+
+<CcmGetWifiListRequest                  type="CcmGetWifiListRequest">
+    <Session                            type="CcmSession"  />
+</CcmGetWifiListRequest>
+
+<CcmGetWifiListResponse                 type="CcmGetWifiListResponse">
+    <Result                             type="CcmResult"    />
+    <WifiList                           type="CcmWifiInfo"  counts="0-10">
+        <ssid                           type="lenstr"           />
+        <connect                        type="int32"            />
+        <quality                        type="int32"            />
+
+        <bss                            type="lenstr"           info="mac"/>
+        <proto                          type="lenstr"           info="B/G/N"/>
+        <mode                           type="lenstr"           info="20HZ;50HZ"/>
+        <freq                           type="lenstr"           info="2.4G(like 2437);5G"/>
+        <signal                         type="int32"            info="signale level"/>
+        <noise                          type="int32"            info="noise level"/>
+        <bitrate                        type="lenstr"           />
+        <encrypt                        type="lenstr"           info="on;off"/>
+
+        <adhoc                          type="int32"            />
+
+        <wps                counts="0-1">
+            <ver                        type="lenstr"   />
+            <mfc                        type="lenstr"   info="manfacuturer"/>
+            <model                      type="lenstr"   />
+            <dev_name                   type="lenstr"   />
+            <conf_methods               type="lenstr"   />
+        </wps>
+
+        <ext counts="0-1">
+            <tsf                            type="lenstr"           />
+            <beacon_interval                type="int32"            info="unit:ms"          />
+            <cap                            type="lenstr"           info="capability"/>
+            <last_seen                      type="int32"            info="unit:ms(ago); "   />
+            <supported_rates                type="lenstr"           />
+            <ds_parameter_set               type="int32"            info="unit:channel"     />
+            <country                        type="lenstr"           />
+            <country_data                   type="lenstr"           />
+            <erp                            type="lenstr"           />
+            <extended_supported_rates       type="lenstr"           />
+
+            <ht    counts="0-1">
+                <caps                           type="lenstr"           counts="0-20"       info="in iw source code, this print max 20 line"/>
+                <maximum_rx_ampdu_length        type="lenstr"           />
+                <minimum_rx_ampdu_time_spacing  type="lenstr"           />
+                <ht_rx_mcs_rate_indexes_supported   type="lenstr"       />
+                <ht_tx_mcs_rate_indexes             type="lenstr"       />
+            </ht>
+            <rsn                counts="0-1"    type="CcmWifiInfoRsn">
+                <ver                            type="lenstr"           />
+                <group_cipher                   type="lenstr"           />
+                <pairwise_ciphers               type="lenstr"           />
+                <auth_suites                    type="lenstr"           />
+                <cap                            type="lenstr"           />
+            </rsn>
+            <wpa                counts="0-1"    type="CcmWifiInfoRsn" />
+            <wmm                counts="0-1">
+                <param_ver                  type="lenstr"   />
+                <be                         type="lenstr"   />
+                <bk                         type="lenstr"   />
+                <vi                         type="lenstr"   />
+                <vo                         type="lenstr"   />
+            </wmm>
+        </ext>
+
+    </WifiList>
+</CcmGetWifiListResponse>
+
+
+<CcmConnectWifiRequest                  type="CcmConnectWifiRequest">
+    <Session                            type="CcmSession"       />
+    <info                               type="CcmUserWifiInfo">
+        <ssid                           type="lenstr"           />
+        <psk                            type="lenstr"           />
+    </info>
+</CcmConnectWifiRequest>
+
+<CcmConnectWifiResponse                 type="CcmConnectWifiResponse">
+    <Result                             type="CcmResult"        />
+</CcmConnectWifiResponse>
+
+<CcmGetWifiConnStatusRequest            type="CcmGetWifiConnStatusRequest">
+    <Session                            type="CcmSession"   />
+</CcmGetWifiConnStatusRequest>
+
+<CcmGetWifiConnStatusResponse           type="CcmGetWifiConnStatusResponse">
+    <Result                             type="CcmResult"    />
+    <status                             type="int32"        info="0:disconnect, 1:connected"/>
+</CcmGetWifiConnStatusResponse>
+<!---------------------------------------------devicemgmt end---------------------------------------------------------->
+
+<!---------------------------------------------media start------------------------------------------------------------->
+<GetVideoSourcesRequest                 type="GetVideoSourcesRequest">
+    <Session                            type="CcmSession"/>
+</GetVideoSourcesRequest>
+
+<GetVideoSourcesResponse                type="GetVideoSourcesResponse">
+    <Result                             type="CcmResult"/>
+    <VideoSources                       type="VideoSource"                      counts="0-100">
+        <token                          type="lenstr"                           info="Unique identifier referencing the physical entity"/>
+        <Framerate                      type="uint32"                           info="Frame rate in frames per second"/>
+        <Resolution                     type="VideoResolution">
+            <Width                      type="uint32"                           info="Number of the columns of the Video image"/>
+            <Height                     type="uint32"                           info="Number of the lines of the Video image"/>
+        </Resolution>
+        <Imaging                        type="ImagingSettings"                  counts="0-1"    info="Optional configuration of the image sensor">
+            <Brightness                 type="uint32"                           info="Image brightness"/>
+        </Imaging>
+        <Extension                      type="VideoSourceExtension"             counts="0-1">
+            <Imaging                    type="ImagingSettings20"                counts="0-1">
+                <BacklightCompensation          type="BacklightCompensation20"          counts="0-1">
+                    <Mode                       type="lenstr"                           info="ON, OFF"/>
+                    <Level                      type="uint32"                           counts="0-1"/>
+                </BacklightCompensation>
+                <mode                           type="lenstr"                           info="auto(default),day,night"/>
+                <Brightness                     type="uint32"                           counts="0-1"/>
+                <ColorSaturation                type="uint32"                           counts="0-1"/>
+                <Contrast                       type="uint32"                           counts="0-1"/>
+                <Exposure                       type="Exposure20"                       counts="0-1">
+                    <Mode                       type="lenstr"                           info="AUTO, MANUAL"/>
+                    <Priority                   type="lenstr"                           counts="0-1"                            info="LowNoise, FrameRate"/>
+                    <MinExposureTime            type="uint32"                           counts="0-1"/>
+                    <MaxExposureTime            type="uint32"                           counts="0-1"/>
+                    <MinGain                    type="uint32"                           counts="0-1"/>
+                    <MaxGain                    type="uint32"                           counts="0-1"/>
+                    <MinIris                    type="uint32"                           counts="0-1"/>
+                    <MaxIris                    type="uint32"                           counts="0-1"/>
+                    <ExposureTime               type="uint32"                           counts="0-1"/>
+                    <Gain                       type="uint32"                           counts="0-1"/>
+                    <Iris                       type="uint32"                           counts="0-1"/>
+                </Exposure>
+                <Focus                          type="FocusConfiguration20"             counts="0-1">
+                    <AutoFocusModes             type="lenstr"                           info="AUTO, MANUAL"/>
+                    <DefaultSpeed               type="uint32"                           counts="0-1"/>
+                    <NearLimit                  type="uint32"                           counts="0-1"/>
+                    <FarLimit                   type="uint32"                           counts="0-1"/>
+                </Focus>
+                <IrCutFilterModes               type="uint32"                           counts="0-1"/>
+                <Sharpness                      type="uint32"                           counts="0-1"/>
+                <WideDynamicRange               type="WideDynamicRange20"               counts="0-1">
+                    <Mode                       type="lenstr"                           info="ON, OFF"/>
+                    <Level                      type="uint32"                           counts="0-1"/>
+                </WideDynamicRange>
+                <WhiteBalance                   type="WhiteBalance20"                   counts="0-1">
+                    <Mode                       type="lenstr"                           info="AUTO, MANUAL"/>
+                    <YrGain                     type="uint32"                           counts="0-1"/>
+                    <YbGain                     type="uint32"                           counts="0-1"/>
+                </WhiteBalance>
+            </Imaging>
+        </Extension>
+    </VideoSources>
+</GetVideoSourcesResponse>
+
+<GetAudioSourcesRequest                 type="GetAudioSourcesRequest">
+    <Session                            type="CcmSession"/>
+</GetAudioSourcesRequest>
+
+<GetAudioSourcesResponse                type="GetAudioSourcesResponse">
+    <Result                             type="CcmResult"/>
+    <AudioSources                       type="AudioSource"                      counts="0-100">
+        <token                          type="lenstr"                           info="Unique identifier referencing the physical entity"/>
+        <Channels                       type="uint32"                           info="number of available audio channels. (1: mono, 2: stereo)"/>
+    </AudioSources>
+</GetAudioSourcesResponse>
+
+<GetAudioSourceConfigurationsRequest    type="GetAudioSourceConfigurationsRequest">
+    <Session                            type="CcmSession"   />
+</GetAudioSourceConfigurationsRequest>
+
+<GetAudioSourceConfigurationsResponse   type="GetAudioSourceConfigurationsResponse">
+    <Result                             type="CcmResult"    />
+    <Configurations                     type="AudioSourceConfiguration"     counts="0-100">
+        <Entity                         type="ConfigurationEntity">
+            <Name                       type="lenstr"                           info="User readable name, Length up to 64 characters"/>
+            <UseCount                   type="uint32"                           info="Number of internal references currently using this configuration"/>
+            <token                      type="lenstr"                           info="Token that uniquely refernces this configuration, Length up to 64 characters"/>
+        </Entity>
+        <SourceToken                    type="lenstr"       />
+        <SourceLevel                    type="int32"        />
+        <silent                         type="int32"        />
+    </Configurations>
+</GetAudioSourceConfigurationsResponse>
+
+<GetAudioSourceConfigurationOptionsRequest  type="GetAudioSourceConfigurationOptionsRequest">
+    <Session                            type="CcmSession"   />
+    <ConfigurationToken                 type="lenstr"   counts="0-1"    />
+    <ProfileToken                       type="lenstr"   counts="0-1"    />
+</GetAudioSourceConfigurationOptionsRequest>
+
+<GetAudioSourceConfigurationOptionsResponse     type="GetAudioSourceConfigurationOptionsResponse">
+    <Result                                     type="CcmResult" />
+    <Options                                    type="AudioSourceConfigurationOptions">
+        <InputTokensAvailable                   type="lenstr"       counts="0-100"  />
+        <Extension                              type="AudioSourceOptionsExtension"  counts="0-1">
+            <SourceLevelRange                   type="IntRange">
+                <Min                            type="int32"    />
+                <Max                            type="int32"    />
+            </SourceLevelRange>
+        </Extension>
+    </Options>
+</GetAudioSourceConfigurationOptionsResponse>
+
+<CreateProfileRequest                   type="CreateProfileRequest">
+    <Session                            type="CcmSession"/>
+    <Name                               type="lenstr"                           info="friendly name of the profile to be created"/>
+    <Token                              type="lenstr"                           counts="0-1"                            info="Optional token, specifying the unique identifier of the new profile"/>
+</CreateProfileRequest>
+
+<CreateProfileResponse                  type="CreateProfileResponse">
+    <Result                             type="CcmResult"/>
+    <Profile                            type="Profile">
+        <Name                           type="lenstr"/>
+        <VideoSourceConfiguration       type="VideoSourceConfiguration"         counts="0-1">
+            <Entity                     type="ConfigurationEntity"              />
+            <SourceToken                type="lenstr"                           info="Reference to the physical input"/>
+            <Bounds                     type="IntRectangle"                     info="Rectangle specifying the Video capturing area. The capturing area shall not be larger than the whole Video source area">
+                <x                      type="uint32"/>
+                <y                      type="uint32"/>
+                <width                  type="uint32"/>
+                <height                 type="uint32"/>
+            </Bounds>
+        </VideoSourceConfiguration>
+
+        <AudioSourceConfiguration       type="AudioSourceConfiguration"         counts="0-1"/>
+
+        <VideoEncoderConfiguration      type="VideoEncoderConfiguration"        counts="0-1">
+            <Entity                     type="ConfigurationEntity"/>
+            <Encoding                   type="lenstr"                           info="Used video codec, either Jpeg, H.264 or Mpeg4"/>
+            <Resolution                 type="VideoResolution"                  info="Configured video resolution"/>
+            <Quality                    type="uint32"                           info="Relative value for the video quantizers and the quality of the video. A high value within supported quality range means higher quality"/>
+            <RateControl                type="VideoRateControl">
+                <type                   type="lenstr"                           info="cbr; vbr; "   />
+                <FrameRateLimit         type="uint32"                           info="Maximum output framerate in fps. If an EncodingInterval is provided the resulting encoded framerate will be reduced by the given factor"/>
+                <EncodingInterval       type="uint32"                           info="Interval at which images are encoded and transmitted. (A value of 1 means that every frame is encoded, a value of 2 means that every 2nd frame is encoded ...)"/>
+                <BitrateLimit           type="uint32"                           info="the maximum output bitrate"   />
+                <BitrateMin             type="uint32"                           info="the minimum output bitrate"   />
+                <BitrateInit            type="uint32"                           info="the init ouput bitrate"       />
+            </RateControl>
+            <H264                       type="H264Configuration"                counts="0-1">
+                <GovLength              type="uint32"                           info="Group of Video frames length. Determines typically the interval in which the I-Frames will be coded. An entry of 1 indicates I-Frames are continuously generated. An entry of 2 indicates that every 2nd image is an I-Frame, and 3 only every 3rd frame, etc. The frames in between are coded as P or B Frames"/>
+                <H264Profile            type="lenstr"                           info="the H.264 profile, either baseline, main, extended or high"/>
+            </H264>
+            <enc_chn                    type="int32"                            info="readonly"/>
+        </VideoEncoderConfiguration>
+
+        <AudioEncoderConfiguration      type="AudioEncoderConfiguration"        counts="0-1">
+            <Entity                     type="ConfigurationEntity"/>
+            <Encoding                   type="lenstr"                           info="Audio codec used for encoding the audio input (either G.711, G.726, AMR, ADPCM or AAC)"/>
+            <Bitrate                    type="uint32"                           info="The output bitrate in kbps."/>
+            <SampleRate                 type="uint32"                           info="The output sample rate in kHz."/>
+        </AudioEncoderConfiguration>
+        <token                          type="lenstr"           />
+        <fixed                          type="int32"            />
+    </Profile>
+</CreateProfileResponse>
+
+<GetProfileRequest                      type="GetProfileRequest">
+    <Session                            type="CcmSession"/>
+    <ProfileToken                       type="lenstr"/>
+</GetProfileRequest>
+
+<GetProfileResponse                     type="GetProfileResponse">
+    <Result                             type="CcmResult"/>
+    <Profile                            type="Profile"/>
+</GetProfileResponse>
+
+<GetProfilesRequest                     type="GetProfilesRequest">
+    <Session                            type="CcmSession"/>
+</GetProfilesRequest>
+
+<GetProfilesResponse                    type="GetProfilesResponse">
+    <Result                             type="CcmResult"/>
+    <Profiles                           type="Profile"                          counts="0-100"/>
+</GetProfilesResponse>
+
+<SetVideoSourceConfigurationRequest     type="SetVideoSourceConfigurationRequest">
+    <Session                            type="CcmSession"/>
+    <VideoSourceConfiguration           type="VideoSourceConfiguration"         info="Contains the modified video source configuration. The configuration shall exist in the device"/>
+    <ForcePersistence                   type="uint32"                           info="Determines if the configuration changes shall be stored and remain after reboot. If true, changes shall be persistent. If false, changes MAY revert to previous values after reboot"/>
+</SetVideoSourceConfigurationRequest>
+
+<SetVideoSourceConfigurationResponse    type="SetVideoSourceConfigurationResponse">
+    <Result                             type="CcmResult"/>
+</SetVideoSourceConfigurationResponse>
+
+<SetAudioSourceConfigurationRequest     type="SetAudioSourceConfigurationRequest">
+    <Session                            type="CcmSession"/>
+    <AudioSourceConfiguration           type="AudioSourceConfiguration"         info="Contains the modified audio source configuration. The configuration shall exist in the device"/>
+    <ForcePersistence                   type="uint32"                           info="Determines if the configuration changes shall be stored and remain after reboot. If true, changes shall be persistent. If false, changes MAY revert to previous values after reboot"/>
+</SetAudioSourceConfigurationRequest>
+
+<SetAudioSourceConfigurationResponse    type="SetAudioSourceConfigurationResponse">
+    <Result                             type="CcmResult"/>
+</SetAudioSourceConfigurationResponse>
+
+<SetVideoEncoderConfigurationRequest    type="SetVideoEncoderConfigurationRequest">
+    <Session                            type="CcmSession"/>
+    <VideoEncoderConfiguration          type="VideoEncoderConfiguration"        info="Contains the modified video encoder configuration. The configuration shall exist in the device"/>
+    <ForcePersistence                   type="uint32"                           info="Determines if the configuration changes shall be stored and remain after reboot. If true, changes shall be persistent. If false, changes MAY revert to previous values after reboot"/>
+</SetVideoEncoderConfigurationRequest>
+
+<SetVideoEncoderConfigurationResponse   type="SetVideoEncoderConfigurationResponse">
+    <Result                             type="CcmResult"/>
+</SetVideoEncoderConfigurationResponse>
+
+<GetVideoEncoderConfigurationsRequest   type="GetVideoEncoderConfigurationsRequest">
+    <Session                            type="CcmSession"   />
+</GetVideoEncoderConfigurationsRequest>
+
+<GetVideoEncoderConfigurationsResponse  type="GetVideoEncoderConfigurationsResponse">
+    <Result                             type="CcmResult"    />
+    <Configurations                     type="VideoEncoderConfiguration"    counts="0-100"  />
+</GetVideoEncoderConfigurationsResponse>
+
+<SetAudioEncoderConfigurationRequest    type="SetAudioEncoderConfigurationRequest">
+    <Session                            type="CcmSession"/>
+    <AudioEncoderConfiguration          type="AudioEncoderConfiguration"        info="Contains the modified audio encoder configuration. The configuration shall exist in the device"/>
+    <ForcePersistence                   type="uint32"                           info="Determines if the configuration changes shall be stored and remain after reboot. If true, changes shall be persistent. If false, changes MAY revert to previous values after reboot"/>
+</SetAudioEncoderConfigurationRequest>
+
+<SetAudioEncoderConfigurationResponse   type="SetAudioEncoderConfigurationResponse">
+    <Result                             type="CcmResult"/>
+</SetAudioEncoderConfigurationResponse>
+
+<GetAudioEncoderConfigurationsRequest   type="GetAudioEncoderConfigurationsRequest">
+    <Session                            type="CcmSession"   />
+</GetAudioEncoderConfigurationsRequest>
+
+<GetAudioEncoderConfigurationsResponse  type="GetAudioEncoderConfigurationsResponse">
+    <Result                             type="CcmResult"    />
+    <Configurations                     type="AudioEncoderConfiguration"    counts="0-100"  />
+</GetAudioEncoderConfigurationsResponse>
+
+<GetStreamUriRequest                    type="GetStreamUriRequest">
+    <Session                            type="CcmSession"/>
+    <_msysenv>
+        <local_ip                       type="ip"   />
+    </_msysenv>
+    <Uri                                type="lenstr"/>
+    <StreamSetup                        type="StreamSetup"                      info="Stream Setup that should be used with the uri">
+        <Stream                         type="lenstr"                           info="RTP_Unicast/RTP_Multicast"/>
+        <Transport                      type="Transport">
+            <Protocol                   type="lenstr"                           info="Defines the network protocol for streaming, either UDP=RTP/UDP, RTSP=RTP/RTSP/TCP or HTTP=RTP/RTSP/HTTP/TCP"/>
+        </Transport>
+        <fps                            type="int32"                            />
+    </StreamSetup>
+    <ProfileToken                       type="lenstr"                           info="The ProfileToken element indicates the media profile to use and will define the configuration of the content of the stream"/>
+</GetStreamUriRequest>
+
+<GetStreamUriResponse                   type="GetStreamUriResponse">
+    <Result                             type="CcmResult"/>
+    <MediaUri                           type="MediaUri">
+        <Uri                            type="lenstr"/>
+        <InvalidAfterConnect            type="uint32"                           info="Indicates if the Uri is only valid until the connection is established. The value shall be set to false"/>
+        <InvalidAfterReboot             type="uint32"                           info="Indicates if the Uri is invalid after a reboot of the device. The value shall be set to false"/>
+        <Timeout                        type="uint32"/>
+    </MediaUri>
+</GetStreamUriResponse>
+
+<GetSnapshotUriRequest                  type="GetSnapshotUriRequest">
+    <Session                            type="CcmSession"/>
+    <_msysenv>
+        <local_ip                       type="ip"       />
+        <local_port                     type="int32"    />
+    </_msysenv>
+    <ProfileToken                       type="lenstr"                           info="The ProfileToken element indicates the media profile to use and will define the configuration of the content of the stream"/>
+</GetSnapshotUriRequest>
+
+<GetSnapshotUriResponse                 type="GetSnapshotUriResponse">
+    <Result                             type="CcmResult"    />
+    <MediaUri                           type="MediaUri"     />
+    <token                              type="lenstr"       />
+</GetSnapshotUriResponse>
+
+
+<!---------------------------------------------media end--------------------------------------------------------------->
+
+<!---------------------------------------------recording begin--------------------------------------------------------->
+<CcmGetRecordingTaskConfigurationRequest    type="CcmGetRecordingTaskConfigurationRequest">
+    <Session                            type="CcmSession"/>
+</CcmGetRecordingTaskConfigurationRequest>
+
+<CcmGetRecordingTaskConfigurationResponse   type="CcmGetRecordingTaskConfigurationResponse">
+    <Result                             type="CcmResult"/>
+    <TaskConfiguration                  type="CcmRecordingTaskConfiguration">
+        <TimeRecord                     type="CcmTimeRecord"                    counts="0-1">
+            <Enable                     type="uint32"/>
+            <AllTime                    type="uint32"                           info="7*24 record"/>
+            <Times                      counts="0-100">
+                <Wday                   type="uint32"                           info="week day enabale mask. Bit0 indicate wday0(sunday); Bit1 indicate wday1(monday); Bit2 indicate wady2(tuesday)..."/>
+                <Start                  type="uint32"                           info="start second"/>
+                <End                    type="uint32"                           info="end second"/>
+            </Times>
+        </TimeRecord>
+        <ProfileToken                   type="lenstr"/>
+        <immediate                      type="int32"                            info="<0:indicate stop immiate record; 0:indicate no immediate record; >0:remain time(ms) of immediate record"/>
+    </TaskConfiguration>
+    <sd_ready                           type="int32"                            info="Whether sd is ready"/>
+</CcmGetRecordingTaskConfigurationResponse>
+
+<CcmSetRecordingTaskConfigurationRequest    type="CcmSetRecordingTaskConfigurationRequest">
+    <Session                            type="CcmSession"/>
+    <TaskConfiguration                  type="CcmRecordingTaskConfiguration"/>
+</CcmSetRecordingTaskConfigurationRequest>
+
+<CcmSetRecordingTaskConfigurationResponse   type="CcmSetRecordingTaskConfigurationResponse">
+    <Result                             type="CcmResult"/>
+</CcmSetRecordingTaskConfigurationResponse>
+<!---------------------------------------------recording end----------------------------------------------------------->
+
+<!---------------------------------------------replay begin------------------------------------------------------------>
+<GetReplayUriRequest                    type="GetReplayUriRequest">
+    <Session                            type="CcmSession"/>
+    <_msysenv>
+        <local_ip                       type="ip"       />
+        <local_port                     type="int32"    />
+    </_msysenv>
+    <Uri                                type="lenstr"/>
+    <StreamSetup                        type="StreamSetup" />
+    <RecordingToken                     type="lenstr"                           info="The identifier of the recording to be streamed"/>
+</GetReplayUriRequest>
+
+<GetReplayUriResponse                   type="GetReplayUriResponse">
+    <Result                             type="CcmResult"/>
+    <Uri                                type="lenstr"/>
+</GetReplayUriResponse>
+
+<!---------------------------------------------replay end-------------------------------------------------------------->
+
+<!---------------------------------------------deviceio begin---------------------------------------------------------->
+<GetAudioOutputsRequest                 type="GetAudioOutputsRequest">
+    <Session                            type="CcmSession"/>
+</GetAudioOutputsRequest>
+
+<GetAudioOutputsResponse                type="GetAudioOutputsResponse">
+    <Result                             type="CcmResult"/>
+    <AudioOutputs                       type="AudioOutput"                      counts="0-100">
+        <token                          type="lenstr"                           info="Unique identifier referencing the physical entity"/>
+    </AudioOutputs>
+</GetAudioOutputsResponse>
+
+<GetAudioOutputConfigurationRequest     type="GetAudioOutputConfigurationRequest">
+    <Session                            type="CcmSession"/>
+    <AudioOutputToken                   type="lenstr"                           info="Token of the physical Audio output"/>
+</GetAudioOutputConfigurationRequest>
+
+<GetAudioOutputConfigurationResponse    type="GetAudioOutputConfigurationResponse">
+    <Result                             type="CcmResult"/>
+    <AudioOutputConfiguration           type="AudioOutputConfiguration">
+        <OutputToken                    type="lenstr"                           info="Token of the phsycial Audio output"/>
+        <OutputLevel                    type="int32"                            info="Volume setting of the output. The applicable range is defined via the option AudioOutputOptions.OutputLevelRange"/>
+    </AudioOutputConfiguration>
+</GetAudioOutputConfigurationResponse>
+
+<SetAudioOutputConfigurationRequest     type="SetAudioOutputConfigurationRequest">
+    <Session                            type="CcmSession"/>
+    <AudioOutputConfiguration           type="AudioOutputConfiguration"/>
+    <ForcePersistence                   type="uint32"                           info="The ForcePersistence element determines how configuration changes shall be stored. If true, changes shall be persistent. If false, changes MAY revert to previous values after reboot"/>
+</SetAudioOutputConfigurationRequest>
+
+<SetAudioOutputConfigurationResponse    type="SetAudioOutputConfigurationResponse">
+    <Result                             type="CcmResult"/>
+</SetAudioOutputConfigurationResponse>
+
+<GetAudioOutputConfigurationOptionsRequest  type="GetAudioOutputConfigurationOptionsRequest">
+    <Session                            type="CcmSession"/>
+    <AudioOutputToken                   type="lenstr"                           info="Token of the physical Audio output"/>
+</GetAudioOutputConfigurationOptionsRequest>
+
+<GetAudioOutputConfigurationOptionsResponse    type="GetAudioOutputConfigurationOptionsResponse">
+    <Result                             type="CcmResult"/>
+    <AudioOutputOptions                 type="AudioOutputConfigurationOptions">
+        <OutputLevelRange               type="IntRange">
+            <Min                        type="int32"/>
+            <Max                        type="int32"/>
+        </OutputLevelRange>
+    </AudioOutputOptions>
+</GetAudioOutputConfigurationOptionsResponse>
+
+<CcmGetDisksRequest                     type="CcmGetDisksRequest">
+    <Session                            type="CcmSession"/>
+</CcmGetDisksRequest>
+
+<CcmGetDisksResponse                    type="CcmGetDisksResponse">
+    <Result                             type="CcmResult"/>
+    <Disks                              type="Disk"                             counts="0-100">
+        <token                          type="lenstr"                           info="Unique identifier referencing the physical entity"/>
+        <status                         type="lenstr"                           info="readonly/mount/repairing/formating/umount/empty"/>
+        <TotalSize                      type="uint32"                           info="Total disk size"/>
+        <AvailableSize                  type="uint32"                           />
+        <UsedSize                       type="uint32"                           info="Used size"/>
+        <sd_conf                        type="ccm_sd_conf"                      counts="0-1"    />
+    </Disks>
+</CcmGetDisksResponse>
+
+<CcmDiskCtrlRequest                     type="CcmDiskCtrlRequest">
+    <Session                            type="CcmSession"/>
+    <token                              type="lenstr"                           info="token of disk"/>
+    <CtrlType                           type="lenstr"                           info="format/umount/mount/repair"/>
+    <sd_conf                            type="ccm_sd_conf"      counts="0-1"    />
+</CcmDiskCtrlRequest>
+
+<CcmDiskCtrlResponse                    type="CcmDiskCtrlResponse">
+    <Result                             type="CcmResult"/>
+</CcmDiskCtrlResponse>
+<!---------------------------------------------deviceio end------------------------------------------------------------>
+
+<!---------------------------------------------event begin------------------------------------------------------------->
+<ccm_message        type="ccm_message">
+    <Session        type="CcmSession"   />
+    <items          type="ccm_msg_item"  counts="1-100">
+        <msg_id     type="int32"    />
+        <sn         type="lenstr"   />
+        <user       type="lenstr"   />
+        <!--seconds from 1970-00-00T00:00:00-->
+        <date       type="uint32"   />
+        <type       type="lenstr"   info="command type"/>
+        <code       type="lenstr"   />
+        <params     type="ccm_msg_param"    counts="0-100">
+            <name   type="lenstr"/>
+            <value  type="lenstr"/>
+        </params>
+    </items>
+</ccm_message>
+
+<ccm_message_search                     type="ccm_message_search">
+    <Session                            type="CcmSession"    />
+    <flag                               type="int32"        info="1:record, 0:default" />
+    <start_time                         type="uint32"       />
+    <end_time                           type="uint32"       />
+    <filter                             type="lenstr"       />
+    <start                              type="int32"        />
+    <counts                             type="int32"        />
+</ccm_message_search>
+
+<ccm_message_search_ack                 type="ccm_message_search_ack">
+    <Result                             type="CcmResult"/>
+    <min_id                             type="int32"    />
+    <max_id                             type="int32"    />
+    <total                              type="int32"            />
+    <messages                           type="ccm_msg_item"  counts="0-100"  />
+    <bound                              type="int32"        info=">0 up-bound, <0 down-bound"/>
+</ccm_message_search_ack>
+<!---------------------------------------------event end--------------------------------------------------------------->
+
+<!---------------------------------------------ptz begin--------------------------------------------------------------->
+<GetNodesRequest                        type="GetNodesRequest">
+    <Session                            type="CcmSession"/>
+</GetNodesRequest>
+
+<GetNodesResponse                       type="GetNodesResponse">
+    <Result                             type="CcmResult"/>
+    <PTZNode                            type="PTZNode"                          counts="0-100">
+        <token                          type="lenstr"                           info="Unique identifier referencing the physical entity"/>
+        <Name                           type="lenstr"                           counts="0-1"                            info="A unique identifier that is used to reference PTZ Nodes"/>
+        <SupportedPTZSpaces             type="PTZSpaces">
+            <AbsolutePanTiltPositionSpace   type="Space2DDescription"           counts="0-100">
+                <URI                    type="lenstr"/>
+                <XRange                 type="FloatRange">
+                    <Min                type="float32"/>
+                    <Max                type="float32"/>
+                </XRange>
+                <YRange                 type="FloatRange"/>
+            </AbsolutePanTiltPositionSpace>
+            <AbsoluteZoomPositionSpace  type="Space1DDescription"               counts="0-100">
+                <URI                    type="lenstr"/>
+                <XRange                 type="FloatRange"/>
+            </AbsoluteZoomPositionSpace>
+            <RelativePanTiltTranslationSpace    type="Space2DDescription"/>
+            <RelativeZoomTranslationSpace   type="Space1DDescription"/>
+            <ContinuousPanTiltVelocitySpace type="Space2DDescription"           counts="0-100"/>
+            <ContinuousZoomVelocitySpace    type="Space1DDescription"           counts="0-100"/>
+            <PanTiltSpeedSpace          type="Space1DDescription"               counts="0-100"/>
+            <ZoomSpeedSpace             type="Space1DDescription"               counts="0-100"/>
+        </SupportedPTZSpaces>
+        <MaximumNumberOfPresets         type="uint32"                           info="All preset operations MUST be available for this PTZ Node if one preset is supported"/>
+        <HomeSupported                  type="uint32"                           info="A boolean operator specifying the availability of a home position. If set to true, the Home Position Operations MUST be available for this PTZ Node"/>
+        <AuxiliaryCommands              type="lenstr"                           counts="0-100"/>
+    </PTZNode>
+</GetNodesResponse>
+
+<RelativeMoveRequest                    type="RelativeMoveRequest">
+    <Session                            type="CcmSession"/>
+    <ProfileToken                       type="lenstr"                           info="A reference to the MediaProfile"/>
+    <Translation                        type="PTZVector">
+        <PanTilt                        type="Vector2D"                         counts="0-1">
+            <x                          type="int32"/>
+            <y                          type="int32"/>
+            <space                      type="lenstr"                           info="Pan/tilt coordinate space selector"/>
+        </PanTilt>
+        <Zoom                           type="Vector1D">
+            <x                          type="int32"/>
+            <space                      type="lenstr"                           info="Pan/tilt coordinate space selector"/>
+        </Zoom>
+    </Translation>
+    <Speed                              type="PTZSpeed">
+        <PanTilt                        type="Vector2D"                         counts="0-1"/>
+        <Zoom                           type="Vector1D"                         counts="0-1"/>
+    </Speed>
+</RelativeMoveRequest>
+
+<RelativeMoveResponse                   type="RelativeMoveResponse">
+    <Result                             type="CcmResult"/>
+</RelativeMoveResponse>
+<GetConfigurationRequest                type="GetConfigurationRequest">
+    <Session                            type="CcmSession"/>
+</GetConfigurationRequest>
+
+<GetConfigurationResponse               type="GetConfigurationResponse">
+    <Result                             type="CcmResult"/>
+    <PTZConfiguration                   type="PTZConfiguration">
+        <DefaultPTZSpeed                type="PTZSpeed"                         counts="0-1"/>
+    </PTZConfiguration>
+</GetConfigurationResponse>
+
+<SetConfigurationRequest                type="SetConfigurationRequest">
+    <Session                            type="CcmSession"/>
+    <PTZConfiguration                   type="PTZConfiguration"/>
+</SetConfigurationRequest>
+
+<SetConfigurationResponse               type="SetConfigurationResponse">
+    <Result                             type="CcmResult"/>
+</SetConfigurationResponse>
+<!---------------------------------------------ptz end----------------------------------------------------------------->
+
+<!---------------------------------------------image begin------------------------------------------------------------->
+<GetImagingSettingsRequest              type="GetImagingSettingsRequest">
+    <Session                            type="CcmSession"/>
+    <VideoSourceToken                   type="lenstr"                           info="Reference token to the VideoSource"/>
+</GetImagingSettingsRequest>
+
+<GetImagingSettingsResponse             type="GetImagingSettingsResponse">
+    <Result                             type="CcmResult"/>
+    <ImagingSettings                    type="ImagingSettings20" />
+</GetImagingSettingsResponse>
+
+<SetImagingSettingsRequest              type="SetImagingSettingsRequest">
+    <Session                            type="CcmSession"/>
+    <VideoSourceToken                   type="lenstr"                           info="Reference token to the VideoSource"/>
+    <ImagingSettings                    type="ImagingSettings20"/>
+</SetImagingSettingsRequest>
+
+<SetImagingSettingsResponse             type="SetImagingSettingsResponse">
+    <Result                             type="CcmResult"/>
+</SetImagingSettingsResponse>
+
+<GetOptionsRequest                      type="GetOptionsRequest">
+    <Session                            type="CcmSession"/>
+    <VideoSourceToken                   type="lenstr"                           info="Reference token to the VideoSource"/>
+</GetOptionsRequest>
+
+<GetOptionsResponse                     type="GetOptionsResponse">
+    <Result                             type="CcmResult"/>
+    <ImagingOptions                     type="ImagingOptions20">
+        <BacklightCompensation          type="BacklightCompensationOptions20"   counts="0-1">
+            <Mode                       type="lenstr"                           info="ON, OFF"/>
+            <Level                      type="FloatRange"                       counts="0-1"/>
+        </BacklightCompensation>
+        <Brightness                     type="FloatRange"                       counts="0-1"/>
+        <ColorSaturation                type="FloatRange"                       counts="0-1"/>
+        <Contrast                       type="FloatRange"                       counts="0-1"/>
+        <Exposure                       type="ExposureOptions20"                counts="0-1">
+            <Mode                       type="lenstr"                           info="AUTO, MANUAL"/>
+            <Priority                   type="lenstr"                           counts="0-1"                            info="LowNoise, FrameRate"/>
+            <MinExposureTime            type="FloatRange"                       counts="0-1"/>
+            <MaxExposureTime            type="FloatRange"                       counts="0-1"/>
+            <MinGain                    type="FloatRange"                       counts="0-1"/>
+            <MaxGain                    type="FloatRange"                       counts="0-1"/>
+            <MinIris                    type="FloatRange"                       counts="0-1"/>
+            <MaxIris                    type="FloatRange"                       counts="0-1"/>
+            <ExposureTime               type="FloatRange"                       counts="0-1"/>
+            <Gain                       type="FloatRange"                       counts="0-1"/>
+            <Iris                       type="FloatRange"                       counts="0-1"/>
+        </Exposure>
+        <Focus                          type="FocusOptions20"                   counts="0-1">
+            <AutoFocusModes             type="uint32"                           info="AUTO, MANUAL"/>
+            <DefaultSpeed               type="FloatRange"                       counts="0-1"/>
+            <NearLimit                  type="FloatRange"                       counts="0-1"/>
+            <FarLimit                   type="FloatRange"                       counts="0-1"/>
+        </Focus>
+        <IrCutFilterModes               type="uint32"                           counts="0-1"/>
+        <Sharpness                      type="FloatRange"                       counts="0-1"/>
+        <WideDynamicRange               type="WideDynamicRangeOptions20"        counts="0-1">
+            <Mode                       type="lenstr"                           info="ON, OFF"/>
+            <Level                      type="FloatRange"                       counts="0-1"/>
+        </WideDynamicRange>
+        <WhiteBalance                   type="WhiteBalanceOptions20"            counts="0-1">
+            <Mode                       type="lenstr"                           info="AUTO, MANUAL"/>
+            <YrGain                     type="FloatRange"                       counts="0-1"/>
+            <YbGain                     type="FloatRange"                       counts="0-1"/>
+        </WhiteBalance>
+    </ImagingOptions>
+</GetOptionsResponse>
+
+<MoveRequest                            type="MoveRequest">
+    <Session                            type="CcmSession"/>
+    <VideoSourceToken                   type="lenstr"                           info="Reference token to the VideoSource"/>
+    <Focus                              type="FocusMove">
+        <Absolute                       type="AbsoluteFocus"                    counts="0-1">
+            <Position                   type="uint32"/>
+            <Speed                      type="uint32"                           counts="0-1"/>
+        </Absolute>
+        <Relative                       type="RelativeFocus"                    counts="0-1">
+            <Distance                   type="uint32"/>
+            <Speed                      type="uint32"                           counts="0-1"/>
+        </Relative>
+        <Continuous                     type="ContinuousFocus"                  counts="0-1">
+            <Speed                      type="uint32"/>
+        </Continuous>
+    </Focus>
+</MoveRequest>
+
+<MoveResponse                           type="MoveResponse">
+    <Result                             type="CcmResult"/>
+</MoveResponse>
+
+<GetMoveOptionsRequest                  type="GetMoveOptionsRequest">
+    <Session                            type="CcmSession"/>
+    <VideoSourceToken                   type="lenstr"                           info="Reference token to the VideoSource"/>
+</GetMoveOptionsRequest>
+
+<GetMoveOptionsResponse                 type="GetMoveOptionsResponse">
+    <Result                             type="CcmResult"/>
+    <MoveOptions                        type="MoveOptions20">
+        <Absolute                       type="AbsoluteFocusOptions">
+            <Position                   type="FloatRange"/>
+            <Speed                      type="FloatRange"                       counts="0-1"/>
+        </Absolute>
+        <Relative                       type="RelativeFocusOptions20">
+            <Distance                   type="FloatRange"/>
+            <Speed                      type="FloatRange"/>
+        </Relative>
+        <Continuous                     type="ContinuousFocusOptions">
+            <Speed                      type="FloatRange"/>
+        </Continuous>
+    </MoveOptions>
+</GetMoveOptionsResponse>
+
+<CcmGetOsdsRequest                      type="CcmGetOsdsRequest">
+    <Session                            type="CcmSession"/>
+</CcmGetOsdsRequest>
+
+<CcmGetOsdsResponse                     type="CcmGetOsdsResponse">
+    <Result                             type="CcmResult"/>
+    <osd                                type="CcmOSDNode">
+        <text                           type="lenstr"       />
+        <text_enable                    type="int32"        />
+        <datetime>
+            <date_format                type="lenstr"       />
+            <enable_12h                 type="int32"        />
+            <date_enable                type="int32"        />
+            <time_enable                type="int32"        />
+        </datetime>
+        <week                           type="int32"        />
+    </osd>
+</CcmGetOsdsResponse>
+
+<CcmSetOsdRequest                       type="CcmSetOsdRequest">
+    <Session                            type="CcmSession"   />
+    <osd                                type="CcmOSDNode"   />
+</CcmSetOsdRequest>
+
+<CcmSetOsdResponse                      type="CcmSetOsdResponse">
+    <Result                             type="CcmResult"/>
+</CcmSetOsdResponse>
+<!---------------------------------------------image end--------------------------------------------------------------->
+
+<!---------------------------------------------discovery begin--------------------------------------------------------->
+<HelloRequest                           type="HelloRequest">
+    <_msysenv>
+        <remote_ip                      type="ip"/>
+        <remote_port                    type="int32"/>
+    </_msysenv>
+    <EndpointReference                  type="EndpointReferenceType">
+        <Address                        type="lenstr"/>
+    </EndpointReference>
+    <Types                              type="lenstr"/>
+    <Scopes                             type="lenstr"                           counts="0-1"/>
+    <XAddrs                             type="lenstr"                           counts="0-1"/>
+    <MetadataVersion                    type="uint32"/>
+    <Nick                               type="lenstr"                           counts="0-1"/>
+</HelloRequest>
+
+<HelloResponse                          type="HelloResponse">
+    <_msysenv>
+        <remote_ip                      type="ip"/>
+        <remote_port                    type="int32"/>
+    </_msysenv>
+    <Types                              type="lenstr"                           counts="0-1"/>
+    <Scopes                             type="lenstr"                           counts="0-1"/>
+</HelloResponse>
+
+<ProbeRequest                           type="ProbeRequest">
+    <_msysenv>
+        <remote_ip                      type="ip"/>
+        <remote_port                    type="int32"/>
+    </_msysenv>
+    <Types                              type="lenstr"                           counts="0-1"/>
+    <Scopes                             type="lenstr"                           counts="0-1"/>
+</ProbeRequest>
+<ProbeResponse                          type="ProbeResponse">
+    <_msysenv>
+        <remote_ip                      type="ip"/>
+        <remote_port                    type="int32"/>
+    </_msysenv>
+    <ProbeMatch                         type="ProbeMatchType"                   counts="0-100">
+        <EndpointReference              type="EndpointReferenceType"/>
+        <Types                          type="lenstr"/>
+        <Scopes                         type="lenstr"                           counts="0-1"/>
+        <XAddrs                         type="lenstr"                           counts="0-1"/>
+        <MetadataVersion                type="uint32"/>
+        <Nick                           type="lenstr"                           counts="0-1"/>
+    </ProbeMatch>
+</ProbeResponse>
+
+<ByeRequest                             type="ByeRequest">
+    <EndpointReference                  type="EndpointReferenceType"/>
+    <Types                              type="lenstr"/>
+    <Scopes                             type="lenstr"                           counts="0-1"/>
+    <XAddrs                             type="lenstr"                           counts="0-1"/>
+    <MetadataVersion                    type="uint32"/>
+</ByeRequest>
+
+<ByeResponse                            type="ByeResponse">
+    <EndpointReference                  type="EndpointReferenceType"/>
+</ByeResponse>
+
+<CcmLicenseInfo                         type="CcmLicenseInfo">
+    <SerialNumber                       type="lenstr"                           info="The serial number of the device"/>
+</CcmLicenseInfo>
+
+<!---------------------------------------------discovery end----------------------------------------------------------->
+
+<CcmServerSetRequest                    type="CcmServerSetRequest">
+    <Session                            type="CcmSession"/>
+    <CcmServerConfiguration             type="CcmServerConfiguration">
+        <debug                          type="int32"                            info="0:need get server from mipcgw. 1: no need get server from mipcgw"/>
+        <mipcgw                         type="lenstr"                           counts="0-10"                           info="mipcgw url"/>
+        <server                         type="mipc_server"/>
+    </CcmServerConfiguration>
+</CcmServerSetRequest>
+
+<CcmServerSetResponse                   type="CcmServerSetResponse">
+    <Result                             type="CcmResult"/>
+</CcmServerSetResponse>
+
+<CcmServerGetRequest                    type="CcmServerGetRequest">
+    <Session                            type="CcmSession"/>
+</CcmServerGetRequest>
+
+<CcmServerGetResponse                   type="CcmServerGetResponse">
+    <Result                             type="CcmResult"/>
+    <CcmServerConfiguration             type="CcmServerConfiguration"/>
+</CcmServerGetResponse>
+
+<CcmProxyInviteRequest                  type="CcmProxyInviteRequest">
+    <Session                            type="CcmSession"/>
+    <address                            type="lenstr"/>
+    <port                               type="int32"/>
+    <cid                                type="int32"/>
+    <user                               type="lenstr"                           info="user name used for login"/>
+    <pass                               type="lenstr"                           info="md5(pass)"/>
+</CcmProxyInviteRequest>
+
+<CcmProxyInviteResponse                 type="CcmProxyInviteResponse">
+    <Result                             type="CcmResult"/>
+</CcmProxyInviteResponse>
+
+<CcmProxyConnectRequest                 type="CcmProxyConnectRequest">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+    <address                            type="lenstr"/>
+    <port                               type="int32"/>
+</CcmProxyConnectRequest>
+
+<CcmProxyConnectResponse                type="CcmProxyConnectResponse">
+    <result                             type="int32"/>
+</CcmProxyConnectResponse>
+
+<CcmProxyLoginRequest                   type="CcmProxyLoginRequest">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+    <address                            type="lenstr"/>
+    <port                               type="int32"/>
+</CcmProxyLoginRequest>
+
+<CcmProxyLoginResponse                  type="CcmProxyLoginResponse">
+    <result                             type="int32"/>
+</CcmProxyLoginResponse>
+
+<CcmMediaSetRequest                     type="CcmMediaSetRequest">
+    <Session                            type="CcmSession"/>
+    <CcmMediaConfiguration              type="CcmMediaConfiguration">
+        <rtmp_port                      type="int32"/>
+        <rtsp_port                      type="int32"/>
+        <rtdp_port                      type="int32"/>
+        <mutp_port                      type="int32"/>
+        <proto                          type="lenstr"                  info="rtmp, rtsp, rtdp, mutp, auto"/>
+    </CcmMediaConfiguration>
+</CcmMediaSetRequest>
+
+<CcmMediaSetResponse                    type="CcmMediaSetResponse">
+    <Result                             type="CcmResult"/>
+</CcmMediaSetResponse>
+
+<CcmMediaGetRequest                     type="CcmMediaGetRequest">
+    <Session                            type="CcmSession"/>
+</CcmMediaGetRequest>
+
+<CcmMediaGetResponse                    type="CcmMediaGetResponse">
+    <Result                             type="CcmResult"/>
+    <CcmMediaConfiguration              type="CcmMediaConfiguration"/>
+</CcmMediaGetResponse>
+
+<ccm_ipc_conf                           type="ccm_ipc_conf">
+    <profiles                           counts="0-100">
+        <token                          type="lenstr"   />
+        <name                           type="lenstr"   />
+        <fixed                          type="int32"    />
+        <vsc                            type="lenstr"   />
+        <asc                            type="lenstr"   />
+        <vec                            type="lenstr"   />
+        <aec                            type="lenstr"   />
+    </profiles>
+    <vscs                               type="lenstr"       counts="0-100"  />
+    <ascs                               type="lenstr"       counts="0-100"  />
+    <vecs                               type="lenstr"       counts="0-100"  />
+    <aecs                               type="lenstr"       counts="0-100"  />
+    <ptzs                               type="lenstr"       counts="0-100"  />
+    <osds                               type="lenstr"       counts="0-100"  />
+    <vss                                type="lenstr"       counts="0-100"  info="video sources"    />
+    <ass                                type="lenstr"       counts="0-100"  />
+    <aos                                type="lenstr"       counts="0-100"  />
+    <aocs                               type="lenstr"       counts="0-100"  />
+
+</ccm_ipc_conf>
+
+<CcmGetImageRequest                     type="CcmGetImageRequest">
+    <Session                            type="CcmSession"   />
+    <token                              type="lenstr"       />
+</CcmGetImageRequest>
+
+<CcmNotifyRequest                       type="CcmNotifyRequest">
+    <!-- 1: sd card insert -->
+    <!-- 2: sd card remove -->
+    <value                              type="int32"        />
+</CcmNotifyRequest>
+
+<CcmNotifyResponse                      type="CcmNotifyResponse">
+    <Result                             type="CcmResult"    />
+</CcmNotifyResponse>
+
+<CcmClientActiveRequest                 type="CcmClientActiveRequest">
+    <Session                            type="CcmSession"   />
+    <ActivationCode                     type="lenstr"       />
+</CcmClientActiveRequest>
+
+<CcmClientActiveResponse                type="CcmClientActiveResponse">
+    <Result                             type="CcmResult"    />
+</CcmClientActiveResponse>
+
+<CcmBuildInfo                           type="CcmBuildInfo">
+    <os_version                         type="lenstr"                           info="os version."/>
+    <project_version                    type="lenstr"                           info="project version"/>
+</CcmBuildInfo>
+
+<CcmGetSDCardStatusRequest              type="CcmGetSDCardStatusRequest">
+    <Session                            type="CcmSession"   />
+</CcmGetSDCardStatusRequest>
+
+<CcmGetSDCardStatusResponse             type="CcmGetSDCardStatusResponse">
+    <Result                             type="CcmResult"    />
+    <mounted                            type="int32"        />
+</CcmGetSDCardStatusResponse>
+
+<CcmSigioRequest                        type="CcmSigioRequest">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</CcmSigioRequest>
+
+<CcmSigioResponse                       type="CcmSigioResponse">
+    <Result                             type="CcmResult"    />
+</CcmSigioResponse>
+
+<CcmGetAudioOutputStreamUriRequest      type="CcmGetAudioOutputStreamUriRequest">
+    <Session                            type="CcmSession"   />
+    <_msysenv>
+        <local_ip                       type="ip"   />
+    </_msysenv>
+    <Uri                                type="lenstr"/>
+    <StreamSetup                        type="StreamSetup"                      info="Stream Setup that should be used with the uri"/>
+    <ProfileToken                       type="lenstr"                          info="The ProfileToken element indicates the media profile to use and will define the configuration of the content of the stream"/>
+    <aec                                type="int32"                           info="Whether enabale aec"/>
+    <maec                               type="int32"                           info="Whether enabale maec"/>
+    <mns                                type="int32"                           info="Whether enabale mns"/>
+</CcmGetAudioOutputStreamUriRequest>
+
+<CcmGetAudioOutputStreamUriResponse     type="CcmGetAudioOutputStreamUriResponse">
+    <Result                             type="CcmResult"/>
+    <MediaUri                           type="MediaUri">
+        <Uri                            type="lenstr"/>
+        <InvalidAfterConnect            type="uint32"                          info="Indicates if the Uri is only valid until the connection is established. The value shall be set to false"/>
+        <InvalidAfterReboot             type="uint32"                          info="Indicates if the Uri is invalid after a reboot of the device. The value shall be set to false"/>
+        <Timeout                        type="uint32"/>
+    </MediaUri>
+    <aec                                type="int32"                           info="Whether enabale aec"/>
+    <maec                               type="int32"                           info="Whether enabale maec"/>
+    <mns                                type="int32"                           info="Whether enabale mns"/>
+</CcmGetAudioOutputStreamUriResponse>
+
+<CcmOnEventRequest                      type="CcmOnEventRequest">
+    <need_ack                           type="int32"            />
+    <type                               type="lenstr"           />
+    <status                             type="int32"            />
+    <code                               type="lenstr"           />
+    <chl>
+        <id                             type="int32"            />
+        <type                           type="lenstr"           />
+        <url                            type="lenstr"           />
+    </chl>
+    <data                               type="lenstr"           info="json format string"/>
+</CcmOnEventRequest>
+
+<CcmOnEventResponse                     type="CcmOnEventResponse">
+    <Result                             type="CcmResult"        />
+</CcmOnEventResponse>
+
+<CcmSetWifiConfigurationRequest         type="CcmSetWifiConfigurationRequest">
+    <Session                            type="CcmSession"       />
+    <conf                               type="CcmWifiConfiguration">
+        <mode                           type="lenstr"           info="adhoc/wificlient"/>
+        <enable_dhcp                    type="int32"            />
+        <dhcp_start                     type="ip"               />
+        <dhcp_end                       type="ip"               />
+        <gateway                        type="ip"               />
+    </conf>
+    <conn_info                          type="conn_info" counts="0-1">
+        <ssid                           type="lenstr"           />
+        <psk                            type="lenstr"           />
+    </conn_info>
+</CcmSetWifiConfigurationRequest>
+
+<CcmSetWifiConfigurationResponse        type="CcmSetWifiConfigurationResponse">
+    <Result                             type="CcmResult"        />
+</CcmSetWifiConfigurationResponse>
+
+<CcmGetWifiConfigurationRequest         type="CcmGetWifiConfigurationRequest">
+    <Session                            type="CcmSession"       />
+</CcmGetWifiConfigurationRequest>
+
+<CcmGetWifiConfigurationResponse        type="CcmGetWifiConfigurationResponse">
+    <Result                             type="CcmResult"        />
+    <conf                               type="CcmWifiConfiguration"     />
+</CcmGetWifiConfigurationResponse>
+
+<ip_set                 type="ccm_ip_set"               counts="0-1">
+    <addr               type="ip"                   info="IPv4 address"/>
+    <mask               type="ip"                   info=""/>
+    <gw                 type="ip"                   info="gate way address"/>
+</ip_set>
+
+<CcmGetNetworkInfoRequest               type="CcmGetNetworkInfoRequest">
+    <Session                            type="CcmSession"/>
+    <tokens                             type="lenstr"   counts="0-10"   />
+    <items                              type="lenstr"   counts="0-10"  info="all|phy|phy.conf|phy.info|ipv4|wifi_client|wifi_adhoc|pppoe|default_gw"/>
+    <force_scan                         type="int32"                    />
+</CcmGetNetworkInfoRequest>
+
+<CcmGetNetworkInfoResponse              type="CcmGetNetworkInfoResponse">
+    <Result                             type="CcmResult"/>
+    <net_info                           type="ccm_net_info">
+        <ifs                            type="ccm_net_interface"                counts="1-100"                          info="List of network interfaces">
+            <token                          type="lenstr"                           info="Unique identifier referencing the physical entity"/>
+            <enabled                        type="uint32"                           info="Indicates whether or not an interface is enabled"/>
+            <phy            type="ccm_phy"  counts="0-1"                            info="Network interface information">
+                <conf       type="ccm_phy_conf"     counts="0-1">
+                    <mode                   type="lenstr"                           inof="ether:ether, wifi:wificlient,adhoc"/>
+                    <mtu                    type="uint32"                           info="Maximum transmission unit"/>
+                </conf>
+                <info       type="ccm_phy_info"     counts="0-1"    info="READONLY">
+                    <name                   type="lenstr"                           info="Network interface name, for example eth0"/>
+                    <type                   type="lenstr"                           info="ether,wifi,gprs,wcdma,lte, READONLY"/>
+                    <mac                    type="lenstr"                           info="Network interface MAC address" />
+                    <status                 type="lenstr"                           info="ok;err;" />
+                </info>
+            </phy>
+            <ipv4           type="ccm_ipv4"         counts="0-1"                            info="IPv4 network interface configuration">
+                <conf       type="ccm_ipv4_conf"    counts="0-1">
+                    <enabled                type="uint32"               info="Indicates whether or not IPv4 is enabled"/>
+                    <mode                   type="lenstr"               info="static,dhcp"/>
+                    <static_ip              type="ccm_ip_set"           counts="0-1"    />
+                    <debug_ip               type="ccm_ip_set"           counts="0-1"    />
+                </conf>
+                <info       type="ccm_ipv4_info"counts="0-1"    info="READONLY">
+                    <status                 type="lenstr"               info="ok;err;err.invalid_param;err.ping_failure;err.gw_empty"/>
+                    <ip                     type="ccm_ip_set"           />
+                </info>
+            </ipv4>
+            <wifi_client    type="ccm_wifi_client"  counts="0-1">
+                <conf       type="ccm_wifi_client_conf"     counts="0-1">
+                    <enabled                type="uint32"               />
+                    <ssid                   type="lenstr"               />
+                    <auth_mod               type="lenstr"               info="discard;"/>
+                    <encrypt_mod            type="lenstr"               info="discard;"/>
+                    <key                    type="lenstr"               />
+                    <usr                    type="lenstr"               />
+                </conf>
+                <info       type="ccm_wifi_client_info"     counts="0-1"    info="READONLY">
+                    <channel                type="int32"               />
+                    <status                 type="lenstr"              info="ok;err;err.invalid_param;info.connecting"/>
+                </info>
+                <ap_list    type="CcmWifiInfo"              counts="0-10" />
+            </wifi_client>
+            <wifi_adhoc     type="ccm_wifi_adhoc"   counts="0-1">
+                <conf       type="ccm_wifi_adhoc_conf"  counts="0-1">
+                    <enabled                type="uint32"               />
+                    <ssid                   type="lenstr"               />
+                    <auth_mod               type="lenstr"               info="discard"/>
+                    <encrypt_mod            type="lenstr"               info="discard"/>
+                    <key                    type="lenstr"               info="length 8-63 bytes"/>
+                </conf>
+                <info       type="ccm_wifi_adhoc_info"  counts="0-1"    info="READONLY">
+                    <status                 type="lenstr"               info="discard"/>
+                    <channel                type="lenstr"               />
+                </info>
+            </wifi_adhoc>
+            <pppoe          type="ccm_pppoe"        counts="0-1"        info="discard;">
+                <conf       type="ccm_pppoe_conf"   counts="0-1">
+                    <enabled                type="uint32"               info="Indicates whether or not IPv4 is enabled"/>
+                    <user                   type="lenstr"               />
+                    <password               type="lenstr"               />
+                </conf>
+                <info       type="ccm_pppoe_info"   counts="0-1"        info="READONLY">
+                    <status                 type="lenstr"               info="discard"/>
+                </info>
+            </pppoe>
+            <dhcp_srv       type="ccm_dhcp_srv" counts="0-1">
+                <conf       type="ccm_dhcp_srv_conf" counts="0-1">
+                    <enabled                type="uint32"               info="Indicates whether or not IPv4 is enabled"/>
+                    <gw                     type="ip"                   info="gate way address!!!!!!"/>
+                    <mask                   type="ip"                   info="discard;"/>
+                    <ip_start               type="ip"                   info="IPv4 address"/>
+                    <ip_end                 type="ip"                   info="IPv4 address"/>
+                </conf>
+                <info       type="ccm_dhcp_srv_info" counts="0-1" info="READONLY">
+                    <status                 type="lenstr"               info="discard;"/>
+                </info>
+            </dhcp_srv>
+            <internet           type="ccm_internet"         counts="0-1">
+                <conf           type="ccm_internet_conf"    counts="0-1">
+                    <domain     type="lenstr"                           info="discard;"/>
+                </conf>
+                <info           type="ccm_internet_info"    counts="0-1">
+                    <status     type="lenstr"               info="ok;err;err.ping_failure;err.domain_empty"   />
+                </info>
+            </internet>
+        </ifs>
+        <dns                type="ccm_dns"          counts="0-1">
+            <conf           type="ccm_dns_conf"     counts="0-1">
+                <enabled                    type="int32"                />
+                <mode                       type="lenstr"               info="static,dhcp"/>
+                <static_dns                 type="ip"                   counts="0-100" />
+            </conf>
+            <info           type="ccm_dns_info"     counts="0-1"                info="READONLY">
+                <status                     type="lenstr"               info="ok;" />
+                <dns                        type="ip"                   counts="0-100"/>
+            </info>
+        </dns>
+    </net_info>
+</CcmGetNetworkInfoResponse>
+
+<CcmSetNetworkInfoRequest               type="CcmSetNetworkInfoRequest">
+    <Session                            type="CcmSession"       />
+    <net_info                           type="ccm_net_info"     />
+</CcmSetNetworkInfoRequest>
+
+<CcmSetNetworkInfoResponse              type="CcmSetNetworkInfoResponse">
+    <Result                             type="CcmResult"    />
+    <reboot_needed                      type="int32"        />
+</CcmSetNetworkInfoResponse>
+
+<CcmSetSystemInfoRequest                type="CcmSetSystemInfoRequest">
+    <Session                            type="CcmSession"   />
+    <info                               type="ccm_sys_info">
+        <flip                           type="int32"        info="0:non-flip, 1:flip"/>
+        <power_freq                     type="int32"        info="0:60hz, 1:50hz"/>
+    </info>
+</CcmSetSystemInfoRequest>
+
+<CcmSetSystemInfoResponse               type="CcmSetSystemInfoResponse">
+    <Result                             type="CcmResult"    />
+</CcmSetSystemInfoResponse>
+
+<CcmGetSystemInfoRequest                type="CcmGetSystemInfoRequest">
+    <Session                            type="CcmSession"   />
+</CcmGetSystemInfoRequest>
+
+<CcmGetSystemInfoResponse               type="CcmGetSystemInfoResponse">
+    <Result                             type="CcmResult"    />
+    <info                               type="ccm_sys_info"     />
+</CcmGetSystemInfoResponse>
+
+<CcmGetMediaInfoRequest                 type="CcmGetMediaInfoRequest">
+    <Session                            type="CcmSession"   />
+</CcmGetMediaInfoRequest>
+
+<CcmGetMediaInfoResponse                type="CcmGetMediaInfoResponse">
+    <Result                             type="CcmResult"        />
+    <infos                               counts="0-100">
+        <server                         type="int32"    />
+        <profile_token                  type="lenstr"   />
+        <stream                         type="lenstr"   />
+        <param                          type="lenstr"   />
+        <mec_chl_id                     type="int32"    />
+        <video_sample_id                type="int32"    />
+        <audio_sample_id                type="int32"    />
+        <uri                            type="lenstr"   />
+    </infos>
+</CcmGetMediaInfoResponse>
+
+<CcmMipcgwConnectRequest                type="CcmMipcgwConnectRequest">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</CcmMipcgwConnectRequest>
+
+<CcmMipcgwConnectResponse               type="CcmMipcgwConnectResponse">
+    <result                             type="int32"/>
+</CcmMipcgwConnectResponse>
+
+<CcmClicmConnectRequest                 type="CcmClicmConnectRequest">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</CcmClicmConnectRequest>
+
+<CcmClicmConnectResponse                type="CcmClicmConnectResponse">
+    <result                             type="int32"/>
+</CcmClicmConnectResponse>
+
+<CcmSignalConnectRequest                type="CcmSignalConnectRequest">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</CcmSignalConnectRequest>
+
+<CcmSignalConnectResponse               type="CcmSignalConnectResponse">
+    <result                             type="int32"/>
+</CcmSignalConnectResponse>
+
+<CcmSubscribeRequest                    type="CcmSubscribeRequest">
+    <Session                            type="CcmSession"   />
+    <_msysenv>
+        <qid	                        type="lenstr"/>
+    </_msysenv>
+    <no_ack                             type="int32"        />
+    <apns_type                          type="lenstr"                           info="apns type"/>
+    <apns_token                         type="lenstr"                           info="apns token"/>
+    <apns_token_prev                    type="lenstr"                           info="apns token previous"/>
+    <p                                  counts="0-100">
+        <n                              type="lenstr"/>
+        <v                              type="lenstr"/>
+    </p>
+</CcmSubscribeRequest>
+
+<CcmSubscribeResponse                   type="CcmSubscribeResponse">
+    <Result                             type="CcmResult"    />
+</CcmSubscribeResponse>
+
+<CcmAlertDeviceSetRequest               type="CcmAlertDeviceSetRequest">
+    <Session                            type="CcmSession"/>
+    <Config                             type="CcmAlertDeviceConfiguration">
+        <IoInputMode                    type="lenstr"                           info="Open:always open; Close:always close"/>
+        <IoOutputMode                   type="lenstr"                           info="Open:always open; Close:always close"/>
+        <MotionLevel                    type="int32"                            info="level of sensitivity about motion detect at day"/>
+        <MotionLevelNight               type="int32"                            info="level of sensitivity about motion detect at night"/>
+        <MotionDebounceTime             type="int32"                            info="Debounce time from motion start to stop"/>
+        <PirDebounceTime                type="int32"                            info="Debounce time from motion start to stop"/>
+    </Config>
+</CcmAlertDeviceSetRequest>
+
+<CcmAlertDeviceSetResponse              type="CcmAlertDeviceSetResponse">
+    <Result                             type="CcmResult"/>
+</CcmAlertDeviceSetResponse>
+
+<CcmAlertDeviceGetRequest               type="CcmAlertDeviceGetRequest">
+    <Session                            type="CcmSession"/>
+</CcmAlertDeviceGetRequest>
+
+<CcmAlertDeviceGetResponse              type="CcmAlertDeviceGetResponse">
+    <Result                             type="CcmResult"/>
+    <Config                             type="CcmAlertDeviceConfiguration"/>
+</CcmAlertDeviceGetResponse>
+
+<ccm_action_conf                        type="ccm_action_conf">
+    <tokens                             type="lenstr"   counts="0-100"  />
+    <Enable                             type="int32"    />
+
+    <md_distance_min                    type="int32"                            info="md distance min"/>
+    <md_distance_max                    type="int32"                            info="md distance max"/>
+    <md_area                            type="int32"                            info="md area during calc"/>
+</ccm_action_conf>
+
+<CcmAlertAction                         type="CcmAlertAction">
+    <Token                              type="lenstr"                           info="Action token"/>
+    <Enable                             type="uint32"/>
+    <Name                               type="lenstr"                           info="Action name"/>
+    <Sources                            type="CcmAlertSource"                   counts="1-10">
+         <Devices                       type="lenstr"                           counts="1-10"                   info="io/motion/pir"/>
+    </Sources>
+    <IoOutputEnable                     type="uint32"                           info="0:disable; 1:enable"/>
+    <SnapshotEnable                     type="uint32"                           info="0:disable; 1:enable"/>
+    <RecordEnable                       type="uint32"                           info="0:disable; 1:enable"/>
+    <SnapshotInterval                   type="uint32"                           info="Snapshot interval during Alert on. 0 indicate only take snapshot when alert raise"/>
+    <PreRecordTime                      type="uint32"                           info="Pre record time(second)"/>
+</CcmAlertAction>
+
+<CcmAlertActionGetRequest               type="CcmAlertActionGetRequest">
+    <Session                            type="CcmSession"/>
+    <Token                              type="lenstr"                           counts="0-100"                  info="Action token. null indicate get all"/>
+</CcmAlertActionGetRequest>
+
+<CcmAlertActionGetResponse              type="CcmAlertActionGetResponse">
+    <Result                             type="CcmResult"/>
+    <Enable                             type="int32"   />
+    <Actions                            type="CcmAlertAction"                   counts="0-100"/>
+</CcmAlertActionGetResponse>
+
+<CcmAlertActionSetRequest               type="CcmAlertActionSetRequest">
+    <Session                            type="CcmSession"/>
+    <Enable                             type="int32"    />
+    <Actions                            type="CcmAlertAction"                   counts="0-100"/>
+</CcmAlertActionSetRequest>
+
+<CcmAlertActionSetResponse              type="CcmAlertActionSetResponse">
+    <Result                             type="CcmResult"/>
+</CcmAlertActionSetResponse>
+
+<CcmAlertActionDelRequest               type="CcmAlertActionDelRequest">
+    <Session                            type="CcmSession"   />
+    <Tokens                             type="lenstr"       counts="0-100"/>
+</CcmAlertActionDelRequest>
+
+<CcmAlertActionDelResponse              type="CcmAlertActionDelResponse">
+    <Result                             type="CcmResult"    />
+</CcmAlertActionDelResponse>
+
+<ccm_debug                              type="ccm_debug">
+    <Session                            type="CcmSession"   />
+    <password                           type="lenstr"/>
+    <method                             type="lenstr"/>
+    <args                               type="lenstr"                           counts="0-100"/>
+    <start                              type="uint32"/>
+    <counts                             type="uint32"/>
+    <size                               type="uint32"/>
+</ccm_debug>
+
+<ccm_debug_ack                          type="ccm_debug_ack">
+    <iresult                            type="int32"/>
+    <sresult                            type="lenstr"/>
+</ccm_debug_ack>
+
+<ccm_oinfo_set                          type="ccm_oinfo_set">
+    <Session                            type="CcmSession"/>
+    <oid                                type="lenstr"/>
+    <lang                               type="lenstr"                           info="language"/>
+    <info                               type="ccm_oinfo">
+        <model                          type="lenstr"                           info="device model"/>
+        <mfc                            type="lenstr"                           info="device manufacture"/>
+        <logo                           type="lenstr"                           info="log url"/>
+    </info>
+</ccm_oinfo_set>
+
+<ccm_oinfo_set_ack                      type="ccm_oinfo_set_ack">
+    <Result                             type="CcmResult"/>
+</ccm_oinfo_set_ack>
+
+<ccm_oinfo_get                          type="ccm_oinfo_get">
+    <Session                            type="CcmSession"   />
+    <oid                                type="lenstr"/>
+    <lang                               type="lenstr"                           info="language"/>
+</ccm_oinfo_get>
+
+<ccm_oinfo_get_ack                      type="ccm_oinfo_get_ack">
+    <Result                             type="CcmResult"/>
+    <info                               type="ccm_oinfo"/>
+</ccm_oinfo_get_ack>
+
+<ccm_hardware_test                      type="ccm_hardware_test">
+    <Session                            type="CcmSession"       />
+    <ptz                                type="int32"        info="0:stop 1:test"/>
+    <led                                type="int32"        />
+    <save                               type="int32"        />
+</ccm_hardware_test>
+
+<ccm_hardware_test_ack                  type="ccm_hardware_test_ack">
+    <Result                             type="CcmResult"        />
+</ccm_hardware_test_ack>
+
+<ccm_hardware_test_get                  type="ccm_hardware_test_get">
+    <Session                            type="CcmSession"  />
+</ccm_hardware_test_get>
+
+<ccm_hardware_test_get_ack              type="ccm_hardware_test_get_ack">
+    <Result                             type="CcmResult"        />
+    <ptz                                type="int32"            />
+    <led                                type="int32"            />
+    <save                               type="int32"            />
+</ccm_hardware_test_get_ack>
+
+<ccm_ctl_desc                           type="ccm_ctl_desc">
+    <name                               type="lenstr"   />
+
+    <in                            type="ccm_ctl_field" counts="0-100">
+        <name  type="lenstr"    />
+        <cols   type="int32"    />
+        <rows   type="int32"    />
+        <min    type="int32"    />
+        <max    type="int32"    />
+        <vals           type="ccm_ctl_val" counts="0-100">
+            <val        type="int32"  />
+            <desc       type="lenstr" />
+        </vals>
+    </in>
+
+    <out                            type="ccm_ctl_field"   counts="0-100" />
+</ccm_ctl_desc>
+
+<ccm_ctl_descs                      type="ccm_ctl_descs">
+    <desc                           type="ccm_ctl_desc"         counts="0-100"/>
+</ccm_ctl_descs>
+
+<ccm_isp_conf                       type="ccm_isp_conf">
+    <enable                         type="int32"    />
+    <freq_fps                       type="int32"    />
+    <freq_time                      type="uint32"   info="ms"/>
+    <jit_time                       type="uint32"   info="ms"/>
+
+    <weight                         type="int32"    counts="0-100"/>
+    <y2fps                          type="int32"    counts="0-100"/>
+</ccm_isp_conf>
+
+<ccm_isp_ctl                            type="ccm_isp_ctl">
+    <Session                            type="CcmSession"           />
+    <set                                type="int32"                />
+    <cmds                               counts="0-100">
+        <name                               type="lenstr"   />
+        <vals                               type="ccm_ctl_val1"    counts="0-100">
+            <name                           type="lenstr"   />
+            <val                            type="int32" counts="0-100" />
+        </vals>
+    </cmds>
+</ccm_isp_ctl>
+
+<ccm_isp_ctl_ack                        type="ccm_isp_ctl_ack">
+    <Result                             type="CcmResult"            />
+    <help                               type="lenstr"   />
+    <cmds                               counts="0-100">
+        <name                           type="lenstr"                   />
+        <info                           type="lenstr"                   />
+        <vals                           type="int32"                    counts="0-100" />
+        <desc                           type="ccm_ctl_desc"             counts="0-1"/>
+    </cmds>
+</ccm_isp_ctl_ack>
+<ccms_connect_cdmq_req                  type="ccms_connect_cdmq_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</ccms_connect_cdmq_req>
+
+<ccms_connect_cdmq_ack                  type="ccms_connect_cdmq_ack">
+    <result                             type="lenstr"/>
+</ccms_connect_cdmq_ack>
+
+<ccms_regist_cdmq_req                      type="ccms_regist_cdmq_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</ccms_regist_cdmq_req>
+
+<ccms_regist_cdmq_ack                      type="ccms_regist_cdmq_ack">
+    <result                             type="lenstr"/>
+</ccms_regist_cdmq_ack>
+
+<ccms_connect_ccds_req                  type="ccms_connect_ccds_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</ccms_connect_ccds_req>
+
+<ccms_connect_ccds_ack                  type="ccms_connect_ccds_ack">
+    <result                             type="lenstr"/>
+</ccms_connect_ccds_ack>
+
+<ccms_device_login_req                  type="ccms_device_login_req">
+    <remote_ip                          type="ip"/>
+    <cid                                type="int32"                            info="local cid"/>
+    <lid                                type="int64"                            info="local link id"/>
+    <serial_number                      type="lenstr"                           info="serial number"/>
+    <pass                               type="lenstr"                           info="md5(pass)"/>
+    <login_contex                       type="bytes"                            info="contex data"/>
+    <login_refer                        type="bytes"                            info="refer data"/>
+    <nick                               type="lenstr"                           info="device nick"/>
+</ccms_device_login_req>
+
+<ccms_device_login_ack                  type="ccms_device_login_ack">
+    <result                             type="lenstr"/>
+</ccms_device_login_ack>
+
+<ccms_user_login_req                    type="ccms_user_login_req">
+    <remote_ip                          type="ip"/>
+    <cid                                type="int32"                            info="local cid"/>
+    <lid                                type="int64"                            info="local link id"/>
+    <user                               type="lenstr"                           info="user name"/>
+    <pass                               type="lenstr"                           info="md5(pass)"/>
+    <login_contex                       type="bytes"                            info="contex data"/>
+    <login_refer                        type="bytes"                            info="refer data"/>
+    <appid                              type="lenstr"                           info="app id"/>
+</ccms_user_login_req>
+
+<ccms_user_login_ack                    type="ccms_user_login_ack">
+    <result                             type="lenstr"/>
+    <guest                              type="int32"                            info="guest"/>
+    <guser                              type="lenstr"                           info="guser"/>
+</ccms_user_login_ack>
+
+<ccms_device_connect_req                type="ccms_device_connect_req">
+    <serial_number                      type="lenstr"                           info="serial number"/>
+</ccms_device_connect_req>
+
+<ccms_device_connect_ack                type="ccms_device_connect_ack">
+    <result                             type="lenstr"/>
+</ccms_device_connect_ack>
+
+<ccms_link_connect_req                  type="ccms_link_connect_req">
+    <serial_number                      type="lenstr"                           info="serial number"/>
+    <lid                                type="int64"                            info="local link id"/>
+    <apply_acl                          type="int32"                            info="flag to indicate whether apply acl rule"/>
+    <appid                              type="lenstr"                           info="app id"/>
+</ccms_link_connect_req>
+
+<ccms_link_connect_ack                  type="ccms_link_connect_ack">
+    <result                             type="lenstr"/>
+    <guest                              type="int32"                            info="guest"/>
+    <cgid                               type="lenstr"                           info="client group id"/>
+</ccms_link_connect_ack>
+
+<ccms_session_connect_req               type="ccms_session_connect_req">
+    <serial_number                      type="lenstr"                           info="serial number"/>
+    <lid                                type="int64"                            info="local link id"/>
+    <sid                                type="int64"                            info="local session id"/>
+</ccms_session_connect_req>
+
+<ccms_session_connect_ack               type="ccms_session_connect_ack">
+    <result                             type="lenstr"/>
+</ccms_session_connect_ack>
+
+<ccms_dmq_watch_req                     type="ccms_dmq_watch_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+    <items                              type="ccms_dmq_watch_item"              counts="1-100">
+        <group_id                       type="lenstr"       info="dmq group id"/>
+        <add_role                       type="uint32"       info="role, 1:manager, 2:reader, 4:writer."/>
+        <del_role                       type="uint32"       info="role, 1:manager, 2:reader, 4:writer."/>
+        <ctx                            type="bytes"        info="contex data"/>
+    </items>
+</ccms_dmq_watch_req>
+
+<ccms_dmq_watch_ack                     type="ccms_dmq_watch_ack">
+    <result                             type="lenstr"/>
+</ccms_dmq_watch_ack>
+
+<ccms_build_info                         type="ccms_build_info">
+    <project_version                    type="lenstr"                           info="project version"/>
+</ccms_build_info>
+
+<ccms_share_set_req                     type="ccms_share_set_req">
+    <nid                                type="lenstr"                           info="user net session id"/>
+    <sn                                 type="lenstr"                           info="The serial number of the device"/>
+    <share_list                         type="ccms_share"                       counts="0-100">
+        <user                           type="lenstr"/>    
+        <authority                      type="lenstr"                           info="root/guest. null indicate delete"/>
+    </share_list>
+</ccms_share_set_req>
+
+<ccms_share_set_ack                     type="ccms_share_set_ack">
+    <result                             type="lenstr"/>
+</ccms_share_set_ack>
+
+<ccms_share_get_req                     type="ccms_share_get_req">
+    <nid                                type="lenstr"/>
+    <sn                                 type="lenstr"/>
+    <user                               type="lenstr"/>    
+</ccms_share_get_req>
+
+<ccms_share_get_ack                     type="ccms_share_get_ack">
+    <result                             type="lenstr"/>
+    <share_list                         type="ccms_share"                       counts="0-100"/>
+    <share_req                          type="lenstr"                           counts="0-100"          info="User list request share"/>
+</ccms_share_get_ack>
+
+<ccms_apns_info                         type="ccms_apns_info">
+    <token                              type="lenstr"                           info="apns token"/>    
+    <type                               type="lenstr"                           info="apns type"/>
+    <user                               type="lenstr"                           info="user"/>    
+    <pass                               type="lenstr"                           info="pass(md5)"/>    
+    <refresh_time                       type="int32"                            info="refresh time"/>    
+    <expire_time                        type="int32"                            info="expire time"/>    
+</ccms_apns_info>
+
+<ccms_apns_desc                         type="ccms_apns_desc">
+    <type                               type="lenstr"                           info="apns type"/>
+    <host                               type="lenstr"/>
+    <port                               type="int32"/>
+    <client_cert                        type="lenstr"/>
+    <client_key                         type="lenstr"/>
+    <client_key_pwd                     type="lenstr"/>
+    <ca_cert                            type="lenstr"/>
+</ccms_apns_desc>
+
+
+<ccms_apns_login                        type="ccms_apns_login">
+    <token                              type="lenstr"                           info="apns token"/>    
+    <type                               type="lenstr"                           info="apns type"/>    
+</ccms_apns_login>
+
+<ccms_query_firmware_req                type="ccms_query_firmware_req"          info="replaced by ccms_update_ipc_version_req">
+    <Session                            type="CcmSession"/>
+    <Manufacturer                       type="lenstr"                           info="The manufactor of the device"/>
+    <Model                              type="lenstr"                           info="The device model"/>
+    <FirmwareVersion                    type="lenstr"                           info="img version"/>
+</ccms_query_firmware_req>
+
+<ccms_query_firmware_ack                type="ccms_query_firmware_ack">
+    <Result                             type="CcmResult"/>
+    <FirmwareVersion                    type="lenstr"                           info="The firmware version in the device"/>
+    <FirmwareUrl                        type="lenstr"                           info="firmware download url"/>
+</ccms_query_firmware_ack>
+
+<ccms_get_ipc_version_update_req        type="ccms_get_ipc_version_update_req">
+    <Session                            type="CcmSession"/>
+    <model                              type="lenstr"                           info="The device model"/>
+    <os_version                         type="lenstr"                           info="os version"/>
+    <img_version                        type="lenstr"                           info="img version"/>
+    <project_version                    type="lenstr"                           info="project version"/>
+    <lang                               type="lenstr"                           info="Client language"/>
+</ccms_get_ipc_version_update_req>
+
+<ccms_get_ipc_version_update_ack        type="ccms_get_ipc_version_update_ack">
+    <Result                             type="CcmResult"/>
+    <update                             type="ccms_ipc_version_update"          counts="0-10">
+        <project_version                type="lenstr"                           info="project version"/>
+        <img_url                        type="lenstr"                           info="img download url"/>
+        <patch_url                      type="lenstr"                           info="patch download url"/>
+        <changes                        type="lenstr"                           info="change history"/>
+    </update>
+</ccms_get_ipc_version_update_ack>
+
+<ccms_set_ipc_version_status_req        type="ccms_set_ipc_version_status_req"  info="set ipc version status">
+    <Session                            type="CcmSession"/>
+    <version                            type="lenstr"                           info="project version"/>
+    <status                             type="lenstr"                           info="testing, stable, main, default is testing"/>
+</ccms_set_ipc_version_status_req>
+
+<ccms_set_ipc_version_status_ack        type="ccms_set_ipc_version_status_ack">
+    <Result                             type="CcmResult"/>
+</ccms_set_ipc_version_status_ack>
+
+<ccms_get_ipc_version_status_req        type="ccms_get_ipc_version_status_req"  info="get ipc version status">
+    <Session                            type="CcmSession"/>
+    <version                            type="lenstr"                           info="project version"/>
+</ccms_get_ipc_version_status_req>
+
+<ccms_get_ipc_version_status_ack        type="ccms_get_ipc_version_status_ack">
+    <Result                             type="CcmResult"/>
+    <status                             type="lenstr"                           info="testing, stable, main, default is testing"/>
+</ccms_get_ipc_version_status_ack>
+
+<ccms_set_ipc_version_select_req        type="ccms_set_ipc_version_select_req">
+    <Session                            type="CcmSession"/>
+    <select                             type="ccms_ipc_version_select">
+        <status                         type="lenstr"                           info="specify version in status for this ipc, default is main"/>
+        <version                        type="lenstr"                           info="specify one version for this ipc"/>
+    </select>
+</ccms_set_ipc_version_select_req>
+
+<ccms_set_ipc_version_select_ack          type="ccms_set_ipc_version_select_ack">
+    <Result                             type="CcmResult"/>
+</ccms_set_ipc_version_select_ack>
+
+<ccms_get_ipc_version_select_req        type="ccms_get_ipc_version_select_req">
+    <Session                            type="CcmSession"/>
+</ccms_get_ipc_version_select_req>
+
+<ccms_get_ipc_version_select_ack        type="ccms_get_ipc_version_select_ack">
+    <Result                             type="CcmResult"/>
+    <select                             type="ccms_ipc_version_select">
+        <status                         type="lenstr"                           info="specify version in status for this ipc, default is main"/>
+        <version                        type="lenstr"                           info="specify one version for this ipc"/>
+    </select>
+</ccms_get_ipc_version_select_ack>
+
+<ccms_refresh_ipc_version_req           type="ccms_refresh_ipc_version_req"     info="refresh ipc version list">
+    <Session                            type="CcmSession"/>
+</ccms_refresh_ipc_version_req>
+
+<ccms_refresh_ipc_version_ack           type="ccms_refresh_ipc_version_ack">
+    <Result                             type="CcmResult"/>
+</ccms_refresh_ipc_version_ack>
+
+<ccms_get_ipc_version_list_req          type="ccms_get_ipc_version_list_req">
+    <Session                            type="CcmSession"/>
+    <start                              type="int32"/>
+    <counts                             type="int32"/>
+</ccms_get_ipc_version_list_req>
+
+<ccms_get_ipc_version_list_ack          type="ccms_get_ipc_version_list_ack">
+    <Result                             type="CcmResult"/>
+    <start                              type="uint32"                           info="start dev index that returned"/>
+    <total                              type="uint32"                           info="total dev number"/>
+    <version_main                       type="lenstr"                           info="version main"/>
+    <version_stable                     type="lenstr"                           info="version stable"/>
+    <version_testing                    type="lenstr"                           info="version testing"/>
+    <info                               type="ccms_ipc_version_info"            counts="0-10">
+        <version                        type="lenstr"                           info="project version"/>
+        <img_url                        type="lenstr"                           info="img_url"/>
+        <pack_img_url                   type="lenstr"                           info="pack ima url"/>
+        <status                         type="lenstr"                           info="status"/>
+        <patch_url                      type="lenstr"                           counts="0-10"/>
+    </info>
+</ccms_get_ipc_version_list_ack>
+
+<ccvs_connect_cdmq_req                   type="ccvs_connect_cdmq_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</ccvs_connect_cdmq_req>
+
+<ccvs_connect_cdmq_ack                   type="ccvs_connect_cdmq_ack">
+    <result                             type="lenstr"/>
+</ccvs_connect_cdmq_ack>
+
+<ccvs_regist_cdmq_req                   type="ccvs_regist_cdmq_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</ccvs_regist_cdmq_req>
+
+<ccvs_regist_cdmq_ack                   type="ccvs_regist_cdmq_ack">
+    <result                             type="lenstr"/>
+</ccvs_regist_cdmq_ack>
+
+<ccvs_get_version_req                   type="ccvs_get_version_req">
+    <nid                                type="lenstr"                           info="user net session id"/>
+    <_msysenv>
+        <remote_ip                      type="ip"/>
+    </_msysenv>
+    <platform>
+        <name                           type="lenstr"                           info="android, ios"/>
+        <hard_ver                       type="lenstr"                           info="hardware version"/>
+        <soft_ver                       type="lenstr"                           info="software version"/>
+    </platform>
+    <app>
+        <id                             type="lenstr"                           info="appid"/>
+        <version                        type="lenstr"                           info="current version"/>
+    </app>
+    <lang                               type="lenstr"                           info="en;zh;tw;jp;ko;de;fr;es;pt;it;ar;ru"/>
+</ccvs_get_version_req>
+
+<ccvs_get_version_ack                   type="ccvs_get_version_ack">
+    <result                             type="lenstr"/>
+    <version                            type="lenstr"                           info="version"/>
+    <changes                            type="lenstr"                           info="change list"/>
+    <info                               counts="0-10">
+        <name                           type="lenstr"                           info="source name"/>
+        <type                           type="lenstr"                           info="market,download"/>
+        <url                            type="lenstr"                           info="url"/>
+    </info>
+</ccvs_get_version_ack>
+
+<ccvs_debug                             type="ccvs_debug">
+    <Session                            type="CcmSession"/>
+    <password                           type="lenstr"/>
+    <method                             type="lenstr"/>
+    <args                               type="lenstr"                           counts="0-100"/>
+    <start                              type="uint32"/>
+    <counts                             type="uint32"/>
+    <size                               type="uint32"/>
+</ccvs_debug>
+
+<ccvs_debug_ack                         type="ccvs_debug_ack">
+    <Result                             type="CcmResult"/>
+    <iresult                            type="int32"/>
+    <sresult                            type="lenstr"/>
+</ccvs_debug_ack><ccds_set_sub_device_req                type="ccds_set_sub_device_req">
+    <nid                                type="lenstr"                           info="mining64_code for tlv set. ( md5(seq+lid+sharekey) + lid+seq )/( md5(seq+tid+user+md5(pass))+seq+tid+user )."/>
+    <user                               type="lenstr"                           info="user name"/>
+    <pass                               type="lenstr"                           info="pass"/>
+    <list                               type="ccds_device_list_info"            info="device list">
+        <devices                        type="ccds_device_info"                 counts="0-100"              info="device serial number">
+            <sn                         type="lenstr"                           info="serial number"/>
+            <nick                       type="lenstr"                           info="device nick"/>
+            <pass                       type="lenstr"                           info="password, null indicate delete device"/>
+        </devices>
+    </list>
+</ccds_set_sub_device_req>
+
+<ccds_set_sub_device_ack                type="ccds_set_sub_device_ack">
+    <result                             type="lenstr"/>
+</ccds_set_sub_device_ack>
+
+<ccds_get_sub_device_req                type="ccds_get_sub_device_req">
+    <nid                                type="lenstr"                           info="mining64_code for tlv set. ( md5(seq+lid+sharekey) + lid+seq )/( md5(seq+tid+user+md5(pass))+seq+tid+user )."/>
+    <user                               type="lenstr"                           info="user name"/>
+    <pass                               type="lenstr"                           info="pass"/>
+    <appid                              type="lenstr"                           info="app id"/>
+</ccds_get_sub_device_req>
+
+<ccds_get_sub_device_ack                type="ccds_get_sub_device_ack">
+    <result                             type="lenstr"/>
+    <guest                              type="int32"                            info="Whether is guest login"/>
+    <guser                              type="lenstr"                           info="guser"/>
+    <list                               type="ccds_device_list_info"            info="device list"/>
+</ccds_get_sub_device_ack>
+
+<ccds_acl_apply_req                     type="ccds_acl_apply_req">
+    <nid                                type="lenstr"                           info="mining64_code for tlv set. ( md5(seq+lid+sharekey) + lid+seq )/( md5(seq+tid+user+md5(pass))+seq+tid+user )."/>
+    <appid                              type="lenstr"                           info="app id"/>
+    <sn                                 type="lenstr"                           info="device sn"/>
+</ccds_acl_apply_req>
+
+<ccds_acl_apply_ack                     type="ccds_acl_apply_ack">
+    <result                             type="lenstr"/>
+    <allow                              type="int32"                            info="allow access"/>
+</ccds_acl_apply_ack>
+
+<ccds_set_device_nick_req               type="ccds_set_device_nick_req">
+    <nid                                type="lenstr"                           info="mining64_code for tlv set. ( md5(seq+lid+sharekey) + lid+seq )/( md5(seq+tid+user+md5(pass))+seq+tid+user )."/>
+    <sn                                 type="lenstr"                           info="user name"/>
+    <pass                               type="lenstr"                           info="pass"/>
+    <nick                               type="lenstr"                           info="nick"/>
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</ccds_set_device_nick_req>
+
+<ccds_set_device_nick_ack               type="ccds_set_device_nick_ack">
+    <result                             type="lenstr"/>
+</ccds_set_device_nick_ack>
+
+<ccds_connect_cdmq_req                  type="ccds_connect_cdmq_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</ccds_connect_cdmq_req>
+
+<ccds_connect_cdmq_ack                  type="ccds_connect_cdmq_ack">
+    <result                             type="lenstr"/>
+</ccds_connect_cdmq_ack>
+
+<ccds_regist_cdmq_req                   type="ccds_regist_cdmq_req">
+    <rflag                              type="uint32"    info="1:do not send ack"/>
+</ccds_regist_cdmq_req>
+
+<ccds_regist_cdmq_ack                   type="ccds_regist_cdmq_ack">
+    <result                             type="lenstr"/>
+</ccds_regist_cdmq_ack>
+
+<ccms_set_ipc_config_req                type="ccms_set_ipc_config_req">
+    <Session                            type="CcmSession"/>
+    <mode                               type="uint32"                           info="0:device;1:user"/>
+    <system                             type="lenstr"                           info="'delete': delete this config; '': not change; other: new config"/>
+    <user                               type="lenstr"                           info="'delete': delete this config; '': not change; other: new config"/>
+</ccms_set_ipc_config_req>
+
+<ccms_set_ipc_config_ack                type="ccms_set_ipc_config_ack">
+    <Result                             type="CcmResult"/>
+</ccms_set_ipc_config_ack>
+
+<ccms_get_ipc_config_req                type="ccms_get_ipc_config_req">
+    <Session                            type="CcmSession"/>
+    <mode                               type="uint32"                           info="0:device;1:user"/>
+    <system_checksum                    type="uint32"/>
+    <user_checksum                      type="uint32"/>
+</ccms_get_ipc_config_req>
+
+<ccms_get_ipc_config_ack                type="ccms_get_ipc_config_ack">
+    <Result                             type="CcmResult"/>
+    <system                             type="lenstr"                           info="'delete': delete this config; '': not change; other: new config"/>
+    <user                               type="lenstr"                           info="'delete': delete this config; '': not change; other: new config"/>
+</ccms_get_ipc_config_ack>
+
+<ccms_device_list_info                  type="ccms_device_list_info">
+    <serial_numbers                     type="lenstr"                           counts="0-100"/>
+</ccms_device_list_info>
+
+<ccds_debug                             type="ccds_debug">
+    <Session                            type="CcmSession"/>
+    <password                           type="lenstr"/>
+    <method                             type="lenstr"/>
+    <args                               type="lenstr"                           counts="0-100"/>
+    <start                              type="uint32"/>
+    <counts                             type="uint32"/>
+    <size                               type="uint32"/>
+</ccds_debug>
+
+<ccds_debug_ack                         type="ccds_debug_ack">
+    <iresult                            type="int32"/>
+    <sresult                            type="lenstr"/>
+</ccds_debug_ack>

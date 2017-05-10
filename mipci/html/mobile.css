@@ -1,0 +1,35 @@
+*{
+	margin: 0;
+	padding:0;
+}
+#main{
+	width:95%;
+	margin: 0 auto;
+	margin-top:40%;
+}
+#download_img{
+	width:6.5em;
+	float:left;
+}
+#download_img img{
+	width:100%;
+}
+#download_info{
+	font-size: 1em;
+	color:#666;
+	line-height: 1.7em;
+}
+#info_id{
+	font-size: 1.5em;
+	color:#000;
+}
+#download_button{
+	width:100%;
+	background: #939393;
+	border-radius: 5px;
+	font-size: 1.5em;
+	line-height: 2em;
+	color:#fff;
+	margin-top:1em;
+	text-align: center;
+}

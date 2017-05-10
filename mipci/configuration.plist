@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>vimtag</key>
+	<true/>
+	<key>luxcam</key>
+	<false/>
+	<key>itelcamera</key>
+	<false/>
+	<key>alert_independent</key>
+	<string>no</string>
+	<key>color</key>
+	<string>vimtag</string>
+	<key>whiteBackground</key>
+	<true/>
+	<key>globalFontName</key>
+	<string>no</string>
+	<key>interfaceBackgroundColor</key>
+	<string>black</string>
+	<key>labelTextColor</key>
+	<string>black</string>
+	<key>labelBackgroundColor</key>
+	<string>no</string>
+	<key>buttonTintColor</key>
+	<string>white</string>
+	<key>buttonBackgroundColor</key>
+	<string>green</string>
+	<key>navigationBarTintColor</key>
+	<string>vimtag</string>
+	<key>navigationBarTitleColor</key>
+	<string>white</string>
+	<key>tabBarTintColor</key>
+	<string>vimtag</string>
+	<key>switchTintColor</key>
+	<string>vimtagTint</string>
+	<key>buttonTitleColor</key>
+	<string>black</string>
+	<key>buttonColor</key>
+	<string>white</string>
+	<key>loginButtonTitleColor</key>
+	<string>white</string>
+</dict>
+</plist>

@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  mipci
+
+  Created by weken on 15/2/4.
+
+*/
+"NSCameraUsageDescription"      = "للوصول إلى الكاميرا.";
+"NSMicrophoneUsageDescription"  = "للوصول إلى الميكروفون الخاص بك.";
+"NSPhotoLibraryUsageDescription" = "للوصول إلى مكتبة الصور الخاصة بك";

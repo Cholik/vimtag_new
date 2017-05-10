@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  mipci
+
+  Created by weken on 15/2/4.
+
+*/
+"NSCameraUsageDescription"      = "Чтобы получить доступ к камере.";
+"NSMicrophoneUsageDescription"  = "Чтобы получить доступ к микрофону.";
+"NSPhotoLibraryUsageDescription" = "Чтобы получить доступ к библиотеке фотографий";

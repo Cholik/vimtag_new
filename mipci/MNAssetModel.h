@@ -1,0 +1,16 @@
+//
+//  SGAssetModel.h
+//  SGImagePickerController
+//
+//  Created by yyx on 15/9/20.
+//  Copyright (c) 2015年 yyx. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface MNAssetModel : NSObject
+@property (nonatomic,strong) UIImage *thumbnail;
+@property (nonatomic,copy) NSURL *imageURL;
+@property (nonatomic,assign) BOOL isSelected;
+- (void)originalImage:(void (^)(UIImage *image))returnImage;
+@end
